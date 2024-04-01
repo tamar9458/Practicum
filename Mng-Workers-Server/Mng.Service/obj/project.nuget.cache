@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "Ak+AP4s7oVgsxaz4wp2dSMXTG2Z4mJYkmaPXDu/m+2qgr1Tdzaz/trIPKHO5Qn3s3opRTl9hYgdwDgdRcVKiMw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\TAMAR TSIGELMAN\\Desktop\\תכנות תשפ''ד\\Practicum\\Mng-Workers-Server\\Mng.Service\\Mng.Service.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\TAMAR TSIGELMAN\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
+    "C:\\Users\\TAMAR TSIGELMAN\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\TAMAR TSIGELMAN\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
+    "C:\\Users\\TAMAR TSIGELMAN\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "C:\\Users\\TAMAR TSIGELMAN\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
