@@ -28,15 +28,16 @@
 }
 
 .welcome {
-  font-size: 130px;
+  font-size: 90px;
   color: black;
   margin-top: 50px;
-  margin-bottom: 85px;
+  margin-bottom: 30px;
+
 }
 
 .here {
   font-size: 35px;
-  color: white;
+  color: black;
 }
 
 .App-logo {

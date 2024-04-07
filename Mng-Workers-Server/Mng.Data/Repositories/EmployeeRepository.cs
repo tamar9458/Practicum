@@ -18,21 +18,29 @@ namespace Mng.Data.Repositories
         }
         public async Task<IEnumerable<Employee>> GetAllAsync()
         {
-            return await _context.Employees.Include(e => e.Roles).ToListAsync();
+            return await _context.Employees.Include(e => e.Roles).ThenInclude(r => r.Role).ToListAsync();
         }
         public async Task<Employee> GetByIdAsync(int id)
         {
             var employee = await _context.Employees
-    .Include(e => e.Roles)
+    .Include(e => e.Roles).ThenInclude(r => r.Role)
     .FirstOrDefaultAsync(e => e.Id == id);
             return employee;
         }
+        public async Task<Employee> GetByPasswordAsync(string password)
+        {
+            var employee = await _context.Employees
+.Include(e => e.Roles).ThenInclude(r => r.Role)
+.FirstOrDefaultAsync(e => e.Password == password);
+            return employee;
+        }
+
         public async Task<Employee> PostAsync(Employee value)
         {
             _context.Employees.Add(value);
             await _context.SaveChangesAsync();
             var employee = await _context.Employees
-              .Include(e => e.Roles)
+              .Include(e => e.Roles).ThenInclude(r => r.Role)
               .FirstOrDefaultAsync(e => e.Id == value.Id);
             return employee;
         }
@@ -49,7 +57,7 @@ namespace Mng.Data.Repositories
                 employee.StartDate = value.StartDate;
                 employee.Status = value.Status;
                 _context.SaveChangesAsync();
-                employee = await _context.Employees.Include(e => e.Roles).FirstOrDefaultAsync(e => e.Id == id);
+                employee = await _context.Employees.Include(e => e.Roles).ThenInclude(r => r.Role).FirstOrDefaultAsync(e => e.Id == id);
                 return employee;
             }
             return employee;
@@ -61,7 +69,7 @@ namespace Mng.Data.Repositories
             {
                 employee.Status = false;
                 await _context.SaveChangesAsync();
-                employee = await _context.Employees.Include(e => e.Roles).FirstOrDefaultAsync(e => e.Id == id);
+                employee = await _context.Employees.Include(e => e.Roles).ThenInclude(r => r.Role).FirstOrDefaultAsync(e => e.Id == id);
             }
             return employee;
         }

@@ -11,6 +11,7 @@ namespace Mng.Core.Services
     {
         public Task<IEnumerable<Employee>> GetAllAsync();
         public Task<Employee> GetByIdAsync(int id);
+        public Task<Employee> GetByPasswordAsync(string password);
         public Task<Employee> PostAsync(Employee employee);
         public Task<Employee> PutAsync(int id,Employee employee);
         public Task<Employee> DeleteAsync(int id);

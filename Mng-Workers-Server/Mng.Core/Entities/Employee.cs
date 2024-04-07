@@ -17,7 +17,9 @@ namespace Mng.Core.Entities
         public DateTime BirthDate { get; set; }
         public DateTime StartDate { get; set; }
         public bool Status { get; set; }
+        public string Password { get; set; }
         public List<EmployeeRole> Roles { get; set; }
+        
 
     }
 }

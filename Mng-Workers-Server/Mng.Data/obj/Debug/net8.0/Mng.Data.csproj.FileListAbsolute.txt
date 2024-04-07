@@ -32,3 +32,4 @@ C:\Users\TAMAR TSIGELMAN\Desktop\תכנות תשפ''ד\Practicum\Mng-Workers-Ser
 C:\Users\TAMAR TSIGELMAN\Desktop\תכנות תשפ''ד\Practicum\Mng-Workers-Server\Mng.Data\obj\Debug\net8.0\Mng.Data.pdb
 C:\Users\TAMAR TSIGELMAN\Desktop\תכנות תשפ''ד\Practicum\Mng-Workers-Server\Mng.Data\obj\Debug\net8.0\Mng.Data.genruntimeconfig.cache
 C:\Users\TAMAR TSIGELMAN\Desktop\תכנות תשפ''ד\Practicum\Mng-Workers-Server\Mng.Data\obj\Debug\net8.0\ref\Mng.Data.dll
+C:\Users\TAMAR TSIGELMAN\Desktop\תכנות תשפ''ד\Practicum\Mng-Workers-Server\Mng.Data\obj\Debug\net8.0\Mng.Data.sourcelink.json

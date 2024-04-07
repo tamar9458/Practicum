@@ -28,3 +28,4 @@ C:\Users\TAMAR TSIGELMAN\Desktop\תכנות תשפ''ד\Practicum\Mng-Workers-Ser
 C:\Users\TAMAR TSIGELMAN\Desktop\תכנות תשפ''ד\Practicum\Mng-Workers-Server\Mng.Service\obj\Debug\net8.0\refint\Mng.Service.dll
 C:\Users\TAMAR TSIGELMAN\Desktop\תכנות תשפ''ד\Practicum\Mng-Workers-Server\Mng.Service\obj\Debug\net8.0\Mng.Service.pdb
 C:\Users\TAMAR TSIGELMAN\Desktop\תכנות תשפ''ד\Practicum\Mng-Workers-Server\Mng.Service\obj\Debug\net8.0\ref\Mng.Service.dll
+C:\Users\TAMAR TSIGELMAN\Desktop\תכנות תשפ''ד\Practicum\Mng-Workers-Server\Mng.Service\obj\Debug\net8.0\Mng.Service.sourcelink.json

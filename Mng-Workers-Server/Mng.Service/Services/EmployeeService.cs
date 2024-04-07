@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Mng.Service.Services
 {
-    public class EmployeeService: IEmployeeService
+    public class EmployeeService : IEmployeeService
     {
         private readonly IEmployeeRepository _repository;
         public EmployeeService(IEmployeeRepository repository)
@@ -18,23 +18,37 @@ namespace Mng.Service.Services
         }
         public async Task<IEnumerable<Employee>> GetAllAsync()
         {
-            var list=await _repository.GetAllAsync();
+            var list = await _repository.GetAllAsync();
             return list;
         }
         public async Task<Employee> GetByIdAsync(int id)
         {
-            Employee employee=await _repository.GetByIdAsync(id);
+            Employee employee = await _repository.GetByIdAsync(id);
             return employee;
 
         }
+        public async Task<Employee> GetByPasswordAsync(string password)
+        {
+            Employee employee = await _repository.GetByPasswordAsync(password);
+            return employee;
+        }
+
         public async Task<Employee> PostAsync(Employee value)
         {
+            value.Roles = value.Roles.Distinct().ToList();
+            var today = DateTime.Now.Date;
+            if (value.Roles.Any(r => r.EnterDate.Date < today))
+                return null;
             Employee employee = await _repository.PostAsync(value);
             return employee;
         }
         public async Task<Employee> PutAsync(int id, Employee value)
         {
-            Employee employee = await _repository.PutAsync(id,value);
+            value.Roles = value.Roles.Distinct().ToList();
+            var today = DateTime.Now.Date;
+            if (value.Roles.Any(r => r.Id == 0 && r.EnterDate.Date < today))
+                return null;
+            Employee employee = await _repository.PutAsync(id, value);
             return employee;
         }
         public async Task<Employee> DeleteAsync(int id)

@@ -284,3 +284,5 @@ C:\Users\TAMAR TSIGELMAN\Desktop\תכנות תשפ''ד\Practicum\Mng-Workers-Ser
 C:\Users\TAMAR TSIGELMAN\Desktop\תכנות תשפ''ד\Practicum\Mng-Workers-Server\Mng.Api\obj\Debug\net8.0\Mng.Api.csproj.Up2Date
 C:\Users\TAMAR TSIGELMAN\Desktop\תכנות תשפ''ד\Practicum\Mng-Workers-Server\Mng.Api\obj\Debug\net8.0\Mng.Api.genruntimeconfig.cache
 C:\Users\TAMAR TSIGELMAN\Desktop\תכנות תשפ''ד\Practicum\Mng-Workers-Server\Mng.Api\obj\Debug\net8.0\ref\Mng.Api.dll
+C:\Users\TAMAR TSIGELMAN\Desktop\תכנות תשפ''ד\Practicum\Mng-Workers-Server\Mng.Api\obj\Debug\net8.0\Mng.Api.sourcelink.json
+C:\Users\TAMAR TSIGELMAN\Desktop\תכנות תשפ''ד\Practicum\Mng-Workers-Server\Mng.Api\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

@@ -5,23 +5,28 @@ import { useNavigate } from "react-router-dom"
 import AddEmployee from './pages/employees/AddEmployee';
 import EmployeesList from './pages/employees/EmployeesList';
 import { Login } from '@mui/icons-material';
+import Home from './pages/Home';
+import Header from './pages/Header'
 
 export const API_URL=`https://localhost:7282/api`
 
 function App() {
   const navigate = useNavigate()
   useEffect(() => {
-    navigate('/employees')
+    navigate('/home')
   }, [])
   return (
     <div className="App">
+      <header> <Header></Header></header>
       <Routes>
+      <Route path="/home" element={<Home />}></Route>
+        <Route path="/login" element={<Login />}></Route>
         <Route path="/employees" element={<EmployeesList />}></Route>
         <Route path="/edit" element={<AddEmployee />}></Route>
-        <Route path="/login" element={<Login />}></Route>
       </Routes>
 
     </div>
+
   );
 }
 

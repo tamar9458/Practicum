@@ -14,6 +14,8 @@ namespace Mng.Data
     {
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Role> Roles { get; set; }
+      //  public DbSet<UserEmployee> Users { get; set; }
+
         public DataContext() { }
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
