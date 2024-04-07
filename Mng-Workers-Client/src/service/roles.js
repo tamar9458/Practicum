@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { API_URL } from '../App';
+import Swal from 'sweetalert2';
 
 export const getAllRoles = () => {
     return dispatch => {
@@ -7,14 +8,16 @@ export const getAllRoles = () => {
             .then((res) => {
                 dispatch({ type: "SET_ROLE", data: res.data })
             })
-            .catch((error) =>{
-            console.log(error)
-            alert('error')  
-        })
+            .catch((error) => {
+                Swal.fire({
+                    title: 'error...',
+                    icon: 'failed'
+                })
+            })
     }
 }
 export const addRole = (data) => {
     return dispatch => {
-     
+
     }
 }

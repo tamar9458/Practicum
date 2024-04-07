@@ -44,7 +44,7 @@ namespace Mng.Service.Services
         }
         public async Task<Employee> PutAsync(int id, Employee value)
         {
-            value.Roles = value.Roles.Distinct().ToList();
+            value.Roles = value.Roles.Distinct().ToList();//Duplication check for the new positions
             var today = DateTime.Now.Date;
             if (value.Roles.Any(r => r.Id == 0 && r.EnterDate.Date < today))
                 return null;

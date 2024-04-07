@@ -8,8 +8,9 @@ import { Login } from '@mui/icons-material';
 import Home from './pages/Home';
 import Header from './pages/Header'
 import LogIn from './pages/login/LogIn';
+import LogOut from './pages/login/LogOut';
 
-export const API_URL=`https://localhost:7282/api`
+export const API_URL = `https://localhost:7282/api`
 
 function App() {
   const navigate = useNavigate()
@@ -20,8 +21,9 @@ function App() {
     <div className="App">
       <header> <Header></Header></header>
       <Routes>
-      <Route path="/home" element={<Home />}></Route>
+        <Route path="/home" element={<Home />}></Route>
         <Route path="/login" element={<LogIn />}></Route>
+        <Route path="/logout" element={<LogOut />}></Route>
         <Route path="/employees" element={<EmployeesList />}></Route>
         <Route path="/edit" element={<AddEmployee />}></Route>
       </Routes>

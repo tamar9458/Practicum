@@ -1,12 +1,14 @@
-.App {
+/* .App {
   text-align: center;
-}
+}*/
 .App {
+    background-image: url(./images/management.jpg);
+
   height: 100vh;
   background-size: cover;
   background-attachment: fixed;
 }
-
+/*
 .header {
   background-color: white;
   min-height: 7vh;
@@ -15,7 +17,7 @@
   justify-content: center;
   width: 100%;
 }
-
+*/
 .container {
   width: 60%;
   height: 50%;
@@ -25,9 +27,9 @@
   margin-left: 20%;
   margin-top: 5%;
   padding-top: 10%;
-}
-
-.welcome {
+} 
+/* 
+ .welcome {
   font-size: 90px;
   color: black;
   margin-top: 50px;
@@ -38,9 +40,9 @@
 .here {
   font-size: 35px;
   color: black;
-}
+} */
 
-.App-logo {
+/*.App-logo {
   height: 40vmin;
   pointer-events: none;
 }
@@ -157,4 +159,24 @@ width: 100%;
   to {
     transform: rotate(360deg);
   }
+} */
+.header {
+  background-color: #0076ce;
+  color: white;
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+}
+
+.header div {
+  cursor: pointer;
+}
+
+.header div:hover {
+  text-decoration: underline;
+}
+
+.header Button {
+  background-color: #0076ce;
+  color: white;
 }

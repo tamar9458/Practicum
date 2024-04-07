@@ -12,7 +12,7 @@ import React from 'react';
 import { saveAs } from 'file-saver';
 import ExcelJS from 'exceljs';
 import { jwtDecode } from 'jwt-decode';
-
+import { decode } from "../Header";
 const formatDataForExcel = (employees) => {
     return employees.map(employee => (
         {
@@ -30,28 +30,17 @@ export default function EmployeeList() {
         employees: state.employee.employees,
         roles: state.role.roles
     }));
-    function decode(token){
-        if(user){
-        const decodedToken = jwtDecode(token);
-        return decodedToken.permission}
-        return 0
-    }
-    const [userPermission,setUserPermission]=useState(decode(user))
+
+    const userPermission=(decode(user))
 
     const [search, setSearch] = useState('')
-    // const [render,setRender]=useState(false)
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
     useEffect(() => {
-        dispatch(getEmployees(user!=null, search,navigate))
+        dispatch(getEmployees(userPermission!=0, search,navigate))
     }, [search]);
 
-    // useEffect(() => {
-    //     dispatch(getEmployees(true, search))
-    // }, [render]);
-
-    const deleteEmployeeHandler = (employee) => {
+      const deleteEmployeeHandler = (employee) => {
         Swal.fire({
             title: "Delete Employee",
             text: "Are you sure you want to delete this employee?",
@@ -67,7 +56,7 @@ export default function EmployeeList() {
                     text: "This employee has been deleted.",
                     icon: "success"
                 });
-                dispatch(deleteEmployee(employee));
+                dispatch(deleteEmployee(employee,navigate));
             }
         })
 
@@ -123,9 +112,8 @@ export default function EmployeeList() {
                                 <TableCell  >
                                     <div style={{ display: 'flex', justifyContent: 'center' }}>
                                         <Button startIcon={<EditIcon />} onClick={() => navigate('/edit', { state: employee })} variant="outlined" color="primary">Edit</Button>
-                                        <Button startIcon={<DeleteIcon />} onClick={() => {
-                                            deleteEmployeeHandler(employee);
-                                        }} variant="outlined" color="secondary">Delete</Button>
+                                        <Button startIcon={<DeleteIcon />} onClick={() => { deleteEmployeeHandler(employee,navigate) }} 
+                                        variant="outlined" color="secondary">Delete</Button>
                                     </div>
                                 </TableCell>
                             </TableRow>

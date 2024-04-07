@@ -9,6 +9,13 @@ import { TextField, Button, Select, MenuItem, FormControl, InputLabel, FormContr
 import AddIcon from '@mui/icons-material/Add';
 import { addEmployee, editEmployee } from "../../service/employees"
 import { } from '@mui/material';
+import InputAdornment from '@mui/material/InputAdornment';
+import AccountCircle from '@mui/icons-material/AccountCircle';//איש
+import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';//מייל
+import CabinIcon from '@mui/icons-material/Cabin';//בית
+import CallIcon from '@mui/icons-material/Call';//טלפון
+import KeyIcon from '@mui/icons-material/Key';//מנעול
+import FingerprintIcon from '@mui/icons-material/Fingerprint';//טביעת אצבע
 
 const schema = yup.object(
     {
@@ -18,6 +25,7 @@ const schema = yup.object(
         BirthDate: yup.date().required('must be fill'),
         StartDate: yup.date().required('must be fill').min(yup.ref('BirthDate'), "The start date of work must be after the date of birth."),
         Gender: yup.number().required('must be fill'),
+        Password:yup.string().nullable(),
         RolesEmployee: yup.array().of(yup.object().shape({
             RoleId: yup.number(),
             IsAdministrative: yup.boolean().nullable(),
@@ -54,6 +62,7 @@ export default () => {
             LastName: selectEmployee?.lastName,
             BirthDate: selectEmployee?.birthDate?.split('T')[0],
             StartDate: selectEmployee?.startDate?.split('T')[0],
+            Password:selectEmployee?.password,
             Gender: selectEmployee?.gender,
             RolesEmployee: selectEmployee?.roles ? selectEmployee.roles.map(role => ({
                 RoleId: role.roleId || "",
@@ -77,11 +86,11 @@ export default () => {
         return isExist;
     }
     const onSubmit = (data) => {
-        console.log(data)
+        console.log(data);
         if (selectEmployee) {
-            dispatch(editEmployee(selectEmployee.id, data))
+            dispatch(editEmployee(selectEmployee.id, data,navigate))
         } else {
-            dispatch(addEmployee(data))
+            dispatch(addEmployee(data,navigate))
         }
         navigate("/")
     }
@@ -101,6 +110,10 @@ export default () => {
             <TextField style={{ width: '80%' }} label="LastName"
                 margin="dense"{...register("LastName")}
                 error={!!errors.LastName} helperText={errors.LastName?.message} />
+            <br />
+            <TextField style={{ width: '80%' }} label="Password"
+                margin="dense"{...register("Password")}
+                error={!!errors.Password} helperText={errors.Password?.message} />
             <br />
             <FormControl component="fieldset">
                 <RadioGroup {...register("Gender")} aria-label="gender" name="Gender" value={selectEmployee?.gender}>

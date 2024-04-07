@@ -5,7 +5,6 @@ const initalseState = {
 const reducer = (state = initalseState, action) => {
     switch (action.type) {
         case "SET_EMPLOYEE": {
-        //    const employees = state.employees.filter(x => x.status);
            const employees = action.data.filter(x => x.status);
         return { ...state, employees:employees }
         }
@@ -21,8 +20,9 @@ const reducer = (state = initalseState, action) => {
             return { ...state, employees: employees }
         }
         case "DELETE_EMPLOYEE": {
-            const employees = state.employees.filter(x => x.id !== action.data.id);
-            return { ...state, employees: employees }
+            const employees = [...state.employees];
+            const employeesToUpdate = employees.filter(x => x.id !== action.data.id);
+            return { ...state, employees: employeesToUpdate }
 
         }
         default: return { ...state }

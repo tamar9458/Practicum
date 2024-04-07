@@ -11,6 +11,8 @@ namespace Mng.Api.Mappings
         public Gender Gender { get; set; }
         public DateTime BirthDate { get; set; }
         public DateTime StartDate { get; set; }
+        public string Password { get; set; }
+
         public bool Status { get; set; }
         public List<EmployeeRolePostModel> Roles { get; set; }
 

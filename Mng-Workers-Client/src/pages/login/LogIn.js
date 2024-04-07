@@ -16,31 +16,17 @@ export default () => {
     const dispatch = useDispatch();
     const [password, setPassword] = useState([]);
     const navigate = useNavigate();
-    const { user, employees, roles } = useSelector(state => ({
-        user: state.user.user,
-        employees: state.employee.employees,
-        roles: state.role.roles
-    }));
     const onSubmit = (data) => {
-        console.log(data);
-        alert(data)
         dispatch(setUser(data, navigate))
     }
 
     return (
         <div className="whiteBack login">
-            <form onSubmit={(data) => { onSubmit(data) }}>
-                <label>
-                    Password:
-                </label>
-                <TextField
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                <Button variant="contained" color="secondary" type="submit">Submit</Button>
-
-            </form>
+            <label> Password:</label>
+            <TextField type="password" value={password}
+                onChange={(e) => setPassword(e.target.value)}
+            />
+            <button onClick={() => { onSubmit(password) }}>Log In</button>
         </div>
     )
 }

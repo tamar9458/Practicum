@@ -56,7 +56,11 @@ namespace Mng.Data.Repositories
                 employee.BirthDate = value.BirthDate;
                 employee.StartDate = value.StartDate;
                 employee.Status = value.Status;
-                _context.SaveChangesAsync();
+                employee.Password = value.Password;
+                var list = employee?.Roles!=null?employee.Roles.ToList():new List<EmployeeRole>();//Duplication check for the new positions against to the old
+                list.AddRange(value?.Roles!=null?value.Roles.ToList():null);
+                employee.Roles = list?.Distinct().ToList(); 
+                await _context.SaveChangesAsync();
                 employee = await _context.Employees.Include(e => e.Roles).ThenInclude(r => r.Role).FirstOrDefaultAsync(e => e.Id == id);
                 return employee;
             }
