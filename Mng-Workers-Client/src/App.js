@@ -7,6 +7,7 @@ import EmployeesList from './pages/employees/EmployeesList';
 import { Login } from '@mui/icons-material';
 import Home from './pages/Home';
 import Header from './pages/Header'
+import LogIn from './pages/login/LogIn';
 
 export const API_URL=`https://localhost:7282/api`
 
@@ -20,7 +21,7 @@ function App() {
       <header> <Header></Header></header>
       <Routes>
       <Route path="/home" element={<Home />}></Route>
-        <Route path="/login" element={<Login />}></Route>
+        <Route path="/login" element={<LogIn />}></Route>
         <Route path="/employees" element={<EmployeesList />}></Route>
         <Route path="/edit" element={<AddEmployee />}></Route>
       </Routes>
