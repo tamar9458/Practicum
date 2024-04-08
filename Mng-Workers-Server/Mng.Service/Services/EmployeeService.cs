@@ -37,7 +37,7 @@ namespace Mng.Service.Services
         {
             value.Roles = value.Roles.Distinct().ToList();
             var today = DateTime.Now.Date;
-            if (value.Roles.Any(r => r.EnterDate.Date < today))
+            if (value.Roles.Any(r =>r.EnterDate<r.LastChange|| r.EnterDate.Date < today))
                 return null;
             Employee employee = await _repository.PostAsync(value);
             return employee;
@@ -46,7 +46,7 @@ namespace Mng.Service.Services
         {
             value.Roles = value.Roles.Distinct().ToList();//Duplication check for the new positions
             var today = DateTime.Now.Date;
-            if (value.Roles.Any(r => r.Id == 0 && r.EnterDate.Date < today))
+            if (value.Roles.Any(r => r.Id == 0 && (r.EnterDate.Date < r.LastChange.Date || r.EnterDate.Date < today)))
                 return null;
             Employee employee = await _repository.PutAsync(id, value);
             return employee;

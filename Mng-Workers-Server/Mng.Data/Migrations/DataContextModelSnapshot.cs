@@ -85,6 +85,9 @@ namespace Mng.Data.Migrations
                     b.Property<bool>("IsAdministrative")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime>("LastChange")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("RoleId")
                         .HasColumnType("int");
 

@@ -20,7 +20,7 @@ export const getEmployees = (byUser, search, navigate) => {
         if (!byUser) {
             Swal.fire({
                 title: 'error...',
-                icon: 'failed'
+                icon: 'error'
             })
             navigate('/login')
         }
@@ -40,12 +40,11 @@ export const getEmployees = (byUser, search, navigate) => {
                         (search == '')
                     )
                     dispatch({ type: "SET_EMPLOYEE", data: filteredEmployee })
-
                 })
                 .catch(() => {
                     Swal.fire({
                         title: 'error...',
-                        icon: 'failed'
+                        icon: 'error'
                     })
                     navigate('/home')
                 })
@@ -66,7 +65,7 @@ export const addEmployee = (data, navigate) => {
         .catch(() => {
             Swal.fire({
                 title: 'error...',
-                icon: 'failed'
+                icon: 'error'
             })
             navigate('/employees')
         })
@@ -83,7 +82,7 @@ export const editEmployee = (id, data, navigate) => {
         }).catch(() => {
             Swal.fire({
                 title: 'error...',
-                icon: 'failed'
+                icon: 'error'
             })
             navigate('/employees')
         })
@@ -92,14 +91,14 @@ export const deleteEmployee = (data, navigate) => {
     return dispatch => axios.delete(`${API_URL}/Employee/${data.id}`)
         .then((res) => {
             dispatch({ type: "DELETE_RECIPE", data: res.data })
-            getEmployees(true, '', navigate)
+            // getEmployees(true, '', navigate)
         })
         .catch(() => {
             Swal.fire({
                 title: 'error...',
-                icon: 'failed'
+                icon: 'error'
             })
-            navigate('/employees')
+            // navigate('/employees')
         }
         )
 }

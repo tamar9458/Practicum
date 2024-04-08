@@ -3,6 +3,18 @@
   "WorkspaceRootPath": "C:\\Users\\TAMAR TSIGELMAN\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05EA\u05E9\u05E4\u0027\u0027\u05D3\\Practicum\\Mng-Workers-Server\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{977C3512-9900-4702-A208-93413F83DED0}|Mng.Core\\Mng.Core.csproj|c:\\users\\tamar tsigelman\\desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05EA\u05E9\u05E4\u0027\u0027\u05D3\\practicum\\mng-workers-server\\mng.core\\mapping\\coremapping.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{977C3512-9900-4702-A208-93413F83DED0}|Mng.Core\\Mng.Core.csproj|solutionrelative:mng.core\\mapping\\coremapping.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{977C3512-9900-4702-A208-93413F83DED0}|Mng.Core\\Mng.Core.csproj|c:\\users\\tamar tsigelman\\desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05EA\u05E9\u05E4\u0027\u0027\u05D3\\practicum\\mng-workers-server\\mng.core\\dtos\\employeedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{977C3512-9900-4702-A208-93413F83DED0}|Mng.Core\\Mng.Core.csproj|solutionrelative:mng.core\\dtos\\employeedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{977C3512-9900-4702-A208-93413F83DED0}|Mng.Core\\Mng.Core.csproj|c:\\users\\tamar tsigelman\\desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05EA\u05E9\u05E4\u0027\u0027\u05D3\\practicum\\mng-workers-server\\mng.core\\entities\\employeerole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{977C3512-9900-4702-A208-93413F83DED0}|Mng.Core\\Mng.Core.csproj|solutionrelative:mng.core\\entities\\employeerole.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F06D1F0E-18D0-4287-842B-C175B33EA0A2}|Mng.Api\\Mng.Api.csproj|c:\\users\\tamar tsigelman\\desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05EA\u05E9\u05E4\u0027\u0027\u05D3\\practicum\\mng-workers-server\\mng.api\\postmodels\\employeepostmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F06D1F0E-18D0-4287-842B-C175B33EA0A2}|Mng.Api\\Mng.Api.csproj|solutionrelative:mng.api\\postmodels\\employeepostmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -49,10 +61,6 @@
       "RelativeMoniker": "D:0:0:{F06D1F0E-18D0-4287-842B-C175B33EA0A2}|Mng.Api\\Mng.Api.csproj|solutionrelative:mng.api\\mng.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{977C3512-9900-4702-A208-93413F83DED0}|Mng.Core\\Mng.Core.csproj|c:\\users\\tamar tsigelman\\desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05EA\u05E9\u05E4\u0027\u0027\u05D3\\practicum\\mng-workers-server\\mng.core\\dtos\\employeedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{977C3512-9900-4702-A208-93413F83DED0}|Mng.Core\\Mng.Core.csproj|solutionrelative:mng.core\\dtos\\employeedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F06D1F0E-18D0-4287-842B-C175B33EA0A2}|Mng.Api\\Mng.Api.csproj|c:\\users\\tamar tsigelman\\desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05EA\u05E9\u05E4\u0027\u0027\u05D3\\practicum\\mng-workers-server\\mng.api\\mapping\\apimapping.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F06D1F0E-18D0-4287-842B-C175B33EA0A2}|Mng.Api\\Mng.Api.csproj|solutionrelative:mng.api\\mapping\\apimapping.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -77,29 +85,45 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "CoreMapping.cs",
+              "DocumentMoniker": "C:\\Users\\TAMAR TSIGELMAN\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05EA\u05E9\u05E4\u0027\u0027\u05D3\\Practicum\\Mng-Workers-Server\\Mng.Core\\Mapping\\CoreMapping.cs",
+              "RelativeDocumentMoniker": "Mng.Core\\Mapping\\CoreMapping.cs",
+              "ToolTip": "C:\\Users\\TAMAR TSIGELMAN\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05EA\u05E9\u05E4\u0027\u0027\u05D3\\Practicum\\Mng-Workers-Server\\Mng.Core\\Mapping\\CoreMapping.cs*",
+              "RelativeToolTip": "Mng.Core\\Mapping\\CoreMapping.cs*",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAuwAwAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-08T09:48:31.096Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "EmployeeRole.cs",
+              "DocumentMoniker": "C:\\Users\\TAMAR TSIGELMAN\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05EA\u05E9\u05E4\u0027\u0027\u05D3\\Practicum\\Mng-Workers-Server\\Mng.Core\\Entities\\EmployeeRole.cs",
+              "RelativeDocumentMoniker": "Mng.Core\\Entities\\EmployeeRole.cs",
+              "ToolTip": "C:\\Users\\TAMAR TSIGELMAN\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05EA\u05E9\u05E4\u0027\u0027\u05D3\\Practicum\\Mng-Workers-Server\\Mng.Core\\Entities\\EmployeeRole.cs",
+              "RelativeToolTip": "Mng.Core\\Entities\\EmployeeRole.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAA8AAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-08T09:46:39.324Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "EmployeePostModel.cs",
               "DocumentMoniker": "C:\\Users\\TAMAR TSIGELMAN\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05EA\u05E9\u05E4\u0027\u0027\u05D3\\Practicum\\Mng-Workers-Server\\Mng.Api\\PostModels\\EmployeePostModel.cs",
               "RelativeDocumentMoniker": "Mng.Api\\PostModels\\EmployeePostModel.cs",
-              "ToolTip": "C:\\Users\\TAMAR TSIGELMAN\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05EA\u05E9\u05E4\u0027\u0027\u05D3\\Practicum\\Mng-Workers-Server\\Mng.Api\\PostModels\\EmployeePostModel.cs*",
-              "RelativeToolTip": "Mng.Api\\PostModels\\EmployeePostModel.cs*",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAA4AAAAAAAAA",
+              "ToolTip": "C:\\Users\\TAMAR TSIGELMAN\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05EA\u05E9\u05E4\u0027\u0027\u05D3\\Practicum\\Mng-Workers-Server\\Mng.Api\\PostModels\\EmployeePostModel.cs",
+              "RelativeToolTip": "Mng.Api\\PostModels\\EmployeePostModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-07T20:16:17.964Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "dbo.Employees [Data]",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/mng_employee_db/True/SqlTable/dbo.Employees.sql",
-              "ToolTip": "dbo.Employees [Data]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2024-04-07T18:11:50.517Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 10,
               "Title": "EmployeeRepository.cs",
               "DocumentMoniker": "C:\\Users\\TAMAR TSIGELMAN\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05EA\u05E9\u05E4\u0027\u0027\u05D3\\Practicum\\Mng-Workers-Server\\Mng.Data\\Repositories\\EmployeeRepository.cs",
               "RelativeDocumentMoniker": "Mng.Data\\Repositories\\EmployeeRepository.cs",
@@ -111,7 +135,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "EmployeeController.cs",
               "DocumentMoniker": "C:\\Users\\TAMAR TSIGELMAN\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05EA\u05E9\u05E4\u0027\u0027\u05D3\\Practicum\\Mng-Workers-Server\\Mng.Api\\Controllers\\EmployeeController.cs",
               "RelativeDocumentMoniker": "Mng.Api\\Controllers\\EmployeeController.cs",
@@ -119,12 +143,11 @@
               "RelativeToolTip": "Mng.Api\\Controllers\\EmployeeController.cs",
               "ViewState": "AQIAAEoAAAAAAAAAAADwvzsAAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-07T01:08:48.969Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-07T01:08:48.969Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 14,
               "Title": "Mng.Api.csproj",
               "DocumentMoniker": "C:\\Users\\TAMAR TSIGELMAN\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05EA\u05E9\u05E4\u0027\u0027\u05D3\\Practicum\\Mng-Workers-Server\\Mng.Api\\Mng.Api.csproj",
               "RelativeDocumentMoniker": "Mng.Api\\Mng.Api.csproj",
@@ -137,6 +160,28 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "EmployeeDTO.cs",
+              "DocumentMoniker": "C:\\Users\\TAMAR TSIGELMAN\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05EA\u05E9\u05E4\u0027\u0027\u05D3\\Practicum\\Mng-Workers-Server\\Mng.Core\\DTOs\\EmployeeDTO.cs",
+              "RelativeDocumentMoniker": "Mng.Core\\DTOs\\EmployeeDTO.cs",
+              "ToolTip": "C:\\Users\\TAMAR TSIGELMAN\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05EA\u05E9\u05E4\u0027\u0027\u05D3\\Practicum\\Mng-Workers-Server\\Mng.Core\\DTOs\\EmployeeDTO.cs",
+              "RelativeToolTip": "Mng.Core\\DTOs\\EmployeeDTO.cs",
+              "ViewState": "AQIAABYAAAAAAAAAAADwvxwAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-03T18:55:25.648Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "dbo.Employees [Data]",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/mng_employee_db/True/SqlTable/dbo.Employees.sql",
+              "ToolTip": "dbo.Employees [Data]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2024-04-07T18:11:50.517Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "Employee.cs",
               "DocumentMoniker": "C:\\Users\\TAMAR TSIGELMAN\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05EA\u05E9\u05E4\u0027\u0027\u05D3\\Practicum\\Mng-Workers-Server\\Mng.Core\\Entities\\Employee.cs",
               "RelativeDocumentMoniker": "Mng.Core\\Entities\\Employee.cs",
@@ -144,12 +189,11 @@
               "RelativeToolTip": "Mng.Core\\Entities\\Employee.cs",
               "ViewState": "AQIAAAwAAAAAAAAAAAA1wBQAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-04T23:17:14.55Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-04T23:17:14.55Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "dbo.EmployeeRole [Data]",
               "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/mng_employee_db/True/SqlTable/dbo.EmployeeRole.sql",
               "ToolTip": "dbo.EmployeeRole [Data]",
@@ -158,7 +202,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\TAMAR TSIGELMAN\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05EA\u05E9\u05E4\u0027\u0027\u05D3\\Practicum\\Mng-Workers-Server\\Mng.Api\\Program.cs",
               "RelativeDocumentMoniker": "Mng.Api\\Program.cs",
@@ -170,7 +214,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "EmployeeService.cs",
               "DocumentMoniker": "C:\\Users\\TAMAR TSIGELMAN\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05EA\u05E9\u05E4\u0027\u0027\u05D3\\Practicum\\Mng-Workers-Server\\Mng.Service\\Services\\EmployeeService.cs",
               "RelativeDocumentMoniker": "Mng.Service\\Services\\EmployeeService.cs",
@@ -182,7 +226,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 13,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\TAMAR TSIGELMAN\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05EA\u05E9\u05E4\u0027\u0027\u05D3\\Practicum\\Mng-Workers-Server\\Mng.Api\\appsettings.json",
               "RelativeDocumentMoniker": "Mng.Api\\appsettings.json",
@@ -194,7 +238,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 12,
               "Title": "IEmployeeService.cs",
               "DocumentMoniker": "C:\\Users\\TAMAR TSIGELMAN\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05EA\u05E9\u05E4\u0027\u0027\u05D3\\Practicum\\Mng-Workers-Server\\Mng.Core\\Services\\IEmployeeService.cs",
               "RelativeDocumentMoniker": "Mng.Core\\Services\\IEmployeeService.cs",
@@ -206,7 +250,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 11,
               "Title": "IEmployeeRepository.cs",
               "DocumentMoniker": "C:\\Users\\TAMAR TSIGELMAN\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05EA\u05E9\u05E4\u0027\u0027\u05D3\\Practicum\\Mng-Workers-Server\\Mng.Core\\Repositories\\IEmployeeRepository.cs",
               "RelativeDocumentMoniker": "Mng.Core\\Repositories\\IEmployeeRepository.cs",
@@ -218,7 +262,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 15,
               "Title": "ApiMapping.cs",
               "DocumentMoniker": "C:\\Users\\TAMAR TSIGELMAN\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05EA\u05E9\u05E4\u0027\u0027\u05D3\\Practicum\\Mng-Workers-Server\\Mng.Api\\Mapping\\ApiMapping.cs",
               "RelativeDocumentMoniker": "Mng.Api\\Mapping\\ApiMapping.cs",
@@ -230,7 +274,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 16,
               "Title": "DataContext.cs",
               "DocumentMoniker": "C:\\Users\\TAMAR TSIGELMAN\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05EA\u05E9\u05E4\u0027\u0027\u05D3\\Practicum\\Mng-Workers-Server\\Mng.Data\\DataContext.cs",
               "RelativeDocumentMoniker": "Mng.Data\\DataContext.cs",
@@ -239,18 +283,6 @@
               "ViewState": "AQIAAAwAAAAAAAAAAAAAABAAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-04T23:10:53.842Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "EmployeeDTO.cs",
-              "DocumentMoniker": "C:\\Users\\TAMAR TSIGELMAN\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05EA\u05E9\u05E4\u0027\u0027\u05D3\\Practicum\\Mng-Workers-Server\\Mng.Core\\DTOs\\EmployeeDTO.cs",
-              "RelativeDocumentMoniker": "Mng.Core\\DTOs\\EmployeeDTO.cs",
-              "ToolTip": "C:\\Users\\TAMAR TSIGELMAN\\Desktop\\\u05EA\u05DB\u05E0\u05D5\u05EA \u05EA\u05E9\u05E4\u0027\u0027\u05D3\\Practicum\\Mng-Workers-Server\\Mng.Core\\DTOs\\EmployeeDTO.cs",
-              "RelativeToolTip": "Mng.Core\\DTOs\\EmployeeDTO.cs",
-              "ViewState": "AQIAABEAAAAAAAAAAAA9wCAAAAAFAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-03T18:55:25.648Z"
             }
           ]
         }

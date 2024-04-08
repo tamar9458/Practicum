@@ -44,6 +44,7 @@ namespace Mng.Api.Controllers
                 var claims = new List<Claim>
         {
             new Claim(ClaimTypes.Name, resDto.FirstName),
+            new Claim("Name", resDto.FirstName),
             new Claim("Permission", resDto.PermissionLevel.ToString()),
                 };
 

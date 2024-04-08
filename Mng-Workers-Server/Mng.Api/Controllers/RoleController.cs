@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Mng.Api.Mappings;
+using Mng.Core.DTOs;
 using Mng.Core.Entities;
 using Mng.Core.Services;
 using Mng.Data;
