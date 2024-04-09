@@ -82,17 +82,14 @@ export default () => {
         return isExist;
     }
 
-    const submittion = (dataSub) => {
-        console.log(dataSub);
-        debugger
+    const submittion = () => {
         const data = getValues()
         if (selectEmployee) {
             dispatch(editEmployee(selectEmployee.id, { ...data, status: selectEmployee?.status, gender: +data.gender }, navigate))
         } else {
-            console.log('data.gender', data.gender);
             dispatch(addEmployee({ ...data, status: true, gender: 1 }, navigate))
         }
-        navigate("/")
+        navigate("/employees")
     }
 
     const [open, setOpen] = useState(true);
@@ -184,7 +181,7 @@ export default () => {
                     </Button>
                     <br />
                     <Button variant="contained" color="primary"
-                        /*  onClick={() => { submittion() }} */type="submit"
+                         onClick={() => { submittion() }} 
                         className="submitt">Submit</Button>
                 </form>
             </DialogContent>

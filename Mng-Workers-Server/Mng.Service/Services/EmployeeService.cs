@@ -56,6 +56,6 @@ namespace Mng.Service.Services
             Employee employee = await _repository.DeleteAsync(id);
             return employee;
         }
-
+           
     }
 }

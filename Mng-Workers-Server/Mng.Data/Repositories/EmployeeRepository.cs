@@ -37,6 +37,10 @@ namespace Mng.Data.Repositories
 
         public async Task<Employee> PostAsync(Employee value)
         {
+            Employee existEmpTz = await _context.Employees.FirstOrDefaultAsync(e => e.TZ == value.TZ);
+            if (existEmpTz != null)
+                throw new ArgumentException("ERROR in Tz. try another");
+
             if (!string.IsNullOrEmpty(value.Password))
             {
                 Employee existEmpPassword = await _context.Employees.FirstOrDefaultAsync(e => e.Password == value.Password);
@@ -54,13 +58,17 @@ namespace Mng.Data.Repositories
              .ThenInclude(r => r.Role).FirstOrDefaultAsync(e => e.Id == id);
             if (employee != null)
             {
-                employee.TZ = value.TZ;
                 employee.FirstName = value.FirstName;
                 employee.LastName = value.LastName;
                 employee.Gender = value.Gender;
                 employee.BirthDate = value.BirthDate;
                 employee.StartDate = value.StartDate;
                 employee.Status = value.Status;
+
+                Employee existEmpTz = await _context.Employees.FirstOrDefaultAsync(e => e.TZ == value.TZ);
+                if (existEmpTz!=null)
+                    throw new ArgumentException("ERROR in Tz. try another");
+                employee.TZ = value.TZ;
 
                 if (!string.IsNullOrEmpty(value.Password))
                 {

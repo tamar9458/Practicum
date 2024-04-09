@@ -86,7 +86,7 @@ export default () => {
                 <TextField type="search" placeholder="Search" onChange={(e) => setSearch(e.target.value)}
                     InputProps={{ startAdornment: (<InputAdornment position="start"><SearchIcon /></InputAdornment>), }} />
             </div>
-            <br></br>
+            <h2 style={{width:'40%',marginLeft:'10%'}}>Employees list</h2>
             <TableContainer component={Paper} style={{ width: '80%', margin: 'auto' }}>
                 <Table>
                     <TableHead>
