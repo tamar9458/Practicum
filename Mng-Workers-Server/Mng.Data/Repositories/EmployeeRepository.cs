@@ -23,30 +23,35 @@ namespace Mng.Data.Repositories
         public async Task<Employee> GetByIdAsync(int id)
         {
             var employee = await _context.Employees
-    .Include(e => e.Roles).ThenInclude(r => r.Role)
-    .FirstOrDefaultAsync(e => e.Id == id);
+             .Include(e => e.Roles).ThenInclude(r => r.Role)
+             .FirstOrDefaultAsync(e => e.Id == id);
             return employee;
         }
         public async Task<Employee> GetByPasswordAsync(string password)
         {
             var employee = await _context.Employees
-.Include(e => e.Roles).ThenInclude(r => r.Role)
-.FirstOrDefaultAsync(e => e.Password == password);
+            .Include(e => e.Roles).ThenInclude(r => r.Role)
+            .FirstOrDefaultAsync(e => e.Password == password);
             return employee;
         }
 
         public async Task<Employee> PostAsync(Employee value)
         {
+            if (!string.IsNullOrEmpty(value.Password))
+            {
+                Employee existEmpPassword = await _context.Employees.FirstOrDefaultAsync(e => e.Password == value.Password);
+                if (existEmpPassword == null)
+                    throw new ArgumentException("ERROR in password. try another");
+            }
             _context.Employees.Add(value);
             await _context.SaveChangesAsync();
-            var employee = await _context.Employees
-              .Include(e => e.Roles).ThenInclude(r => r.Role)
+            return await _context.Employees.Include(e => e.Roles).ThenInclude(r => r.Role)
               .FirstOrDefaultAsync(e => e.Id == value.Id);
-            return employee;
         }
         public async Task<Employee> PutAsync(int id, Employee value)
         {
-            Employee employee = await _context.Employees.FindAsync(id);
+            Employee employee = await _context.Employees.Include(e => e.Roles)
+             .ThenInclude(r => r.Role).FirstOrDefaultAsync(e => e.Id == id);
             if (employee != null)
             {
                 employee.TZ = value.TZ;
@@ -56,15 +61,32 @@ namespace Mng.Data.Repositories
                 employee.BirthDate = value.BirthDate;
                 employee.StartDate = value.StartDate;
                 employee.Status = value.Status;
-                employee.Password = value.Password;
-                var list = employee?.Roles!=null?employee.Roles.ToList():new List<EmployeeRole>();//Duplication check for the new positions against to the old
-                list.AddRange(value?.Roles!=null?value.Roles.ToList():null);
-                employee.Roles = list?.Distinct().ToList(); 
+
+                if (!string.IsNullOrEmpty(value.Password))
+                {
+                    Employee existEmpPassword = await _context.Employees.FirstOrDefaultAsync(e => e.Password == value.Password);
+                       if (existEmpPassword==null)
+                        throw new ArgumentException("ERROR in password. try another");
+                    employee.Password = value.Password;
+                }
+
+                foreach (var newRole in value.Roles)
+                {
+                    var existingRole = employee.Roles.FirstOrDefault(r => r.RoleId == newRole.RoleId);
+                    if (existingRole != null)
+                    {
+                        existingRole.EnterDate = newRole.EnterDate;
+                        existingRole.IsAdministrative = newRole.IsAdministrative;
+                    }
+                    else
+                        employee.Roles.Add(newRole);
+                }
+
                 await _context.SaveChangesAsync();
-                employee = await _context.Employees.Include(e => e.Roles).ThenInclude(r => r.Role).FirstOrDefaultAsync(e => e.Id == id);
-                return employee;
+               return await _context.Employees.Include(e => e.Roles)
+                    .ThenInclude(r => r.Role).FirstOrDefaultAsync(e => e.Id == id);
             }
-            return employee;
+            return employee;              
         }
         public async Task<Employee> DeleteAsync(int id)
         {

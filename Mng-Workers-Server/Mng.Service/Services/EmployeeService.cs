@@ -35,20 +35,19 @@ namespace Mng.Service.Services
 
         public async Task<Employee> PostAsync(Employee value)
         {
-            value.Roles = value.Roles.Distinct().ToList();
-            
+            value.Roles = value.Roles.GroupBy(r => r.RoleId).Select(g => g.First()).ToList();//Duplication check for the positions
             var today = DateTime.Now.Date;
-            if (value.Roles.Any(r =>r.EnterDate<r.LastChange|| r.EnterDate.Date < today))
-                return null;
+            if (value.Roles.Any(r => r.EnterDate.Date < r.LastChange.Date || r.EnterDate.Date < today))
+                throw new ArgumentException("ERROR accure in enter date. must be rather then the last change date or in the future");
             Employee employee = await _repository.PostAsync(value);
             return employee;
         }
         public async Task<Employee> PutAsync(int id, Employee value)
         {
-            value.Roles = value.Roles.Distinct().ToList();//Duplication check for the new positions
+            value.Roles = value.Roles.GroupBy(r => r.RoleId).Select(g => g.First()).ToList();//Duplication check for the new positions
             var today = DateTime.Now.Date;
-            if (value.Roles.Any(r => r.Id == 0 && (r.EnterDate.Date < r.LastChange.Date || r.EnterDate.Date < today)))
-                return null;
+            if (value.Roles.Any(r => r.EnterDate.Date < r.LastChange.Date || r.EnterDate.Date < today))
+                throw new ArgumentException("ERROR accure in enter date. must be rather then the last change date or in the future");
             Employee employee = await _repository.PutAsync(id, value);
             return employee;
         }
@@ -57,5 +56,6 @@ namespace Mng.Service.Services
             Employee employee = await _repository.DeleteAsync(id);
             return employee;
         }
+
     }
 }

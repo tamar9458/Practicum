@@ -8,33 +8,33 @@ import { getAllRoles } from "../../service/roles"
 import { TextField, Button, Select, MenuItem, FormControl, InputLabel, FormControlLabel, FormLabel, Radio, RadioGroup, FormControlButton } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { addEmployee, editEmployee } from "../../service/employees"
-import { } from '@mui/material';
 import { Dialog, DialogTitle, DialogContent } from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';
 import AccountCircle from '@mui/icons-material/AccountCircle';//איש
-import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';//מייל
-import CabinIcon from '@mui/icons-material/Cabin';//בית
-import CallIcon from '@mui/icons-material/Call';//טלפון
 import KeyIcon from '@mui/icons-material/Key';//מנעול
 import FingerprintIcon from '@mui/icons-material/Fingerprint';//טביעת אצבע
 import DeleteIcon from '@mui/icons-material/Delete';
 
 const schema = yup.object(
     {
-        tz: yup.string().required('must be fill').min(9).max(9),
+        tz: yup.string().required('must be fill').matches(/^\d{9}$/, 'Tz must be exactly 9 digits'),
         firstName: yup.string().required('must be fill').min(3),
         lastName: yup.string().required('must be fill').min(3),
-        birthDate: yup.date().required('must be fill'),
+        birthDate: yup.date().required('must be fill').max(new Date(), 'Birth Date must be on or before the current date'),
         StartDate: yup.date().required('must be fill').min(yup.ref('birthDate'), "The start date of work must be after the date of birth."),
-        gander: yup.number().required('must be fill'),
-        password: yup.string().nullable(),
+        gander: yup.number().required('must be fill').default(1),
+        password: yup.string().nullable().transform((value, originalValue) => {
+            return originalValue === '' ? null : value;
+        }).nullable().min(8, 'Password must be at least 8 characters'),
         roles: yup.array().of(yup.object().shape({
             roleId: yup.number(),
-            isAdministrative: yup.boolean().nullable(),
+            isAdministrative: yup.boolean().default(false),
             lastChange: yup.date().nullable(),
             enterDate: yup.date()
-        }))
-            .required('must be fill')
+                .when('lastChange', (lastChange, schema) => (
+                    lastChange && schema.min(lastChange, `Enter Date must be equal to or later than Last Change Date ${lastChange}`)
+                ))
+        })).required('must be fill')
     })
 
 export default () => {
@@ -72,21 +72,24 @@ export default () => {
         control, name: "roles"
     })
 
-    const isRoleIdExists = (index) => {
-        const roleIdsArray = roles.map(field => field.roleId);
+    const isRoleIdExists = (i) => {
+        const roleIdsArray = roles.map(r => r.roleId);
         var isExist = false
         roleIdsArray?.forEach((role) => {
-            if (role == index)
+            if (role == i)
                 isExist = true;
         })
         return isExist;
     }
 
-    const submittion = () => {
+    const submittion = (dataSub) => {
+        console.log(dataSub);
+        debugger
         const data = getValues()
         if (selectEmployee) {
-            dispatch(editEmployee(selectEmployee.id, { ...data, status: selectEmployee?.status,  gender: +data.gender }, navigate))
+            dispatch(editEmployee(selectEmployee.id, { ...data, status: selectEmployee?.status, gender: +data.gender }, navigate))
         } else {
+            console.log('data.gender', data.gender);
             dispatch(addEmployee({ ...data, status: true, gender: 1 }, navigate))
         }
         navigate("/")
@@ -170,7 +173,7 @@ export default () => {
                                             ))}
                                     </Select>
                                 </FormControl>
-                                <Button startIcon={<DeleteIcon />} onClick={() => { remove(i) }}color="primary" ></Button>
+                                <Button startIcon={<DeleteIcon />} onClick={() => { remove(i) }} color="primary" ></Button>
 
                             </div>
                         ))}
@@ -180,7 +183,9 @@ export default () => {
                         Add Role
                     </Button>
                     <br />
-                    <Button variant="contained" color="primary" onClick={() => { submittion() }} className="submitt">Submit</Button>
+                    <Button variant="contained" color="primary"
+                        /*  onClick={() => { submittion() }} */type="submit"
+                        className="submitt">Submit</Button>
                 </form>
             </DialogContent>
         </Dialog>
