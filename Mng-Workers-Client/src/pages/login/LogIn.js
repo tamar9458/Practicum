@@ -10,6 +10,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';//איש
 import InputAdornment from '@mui/material/InputAdornment';
 import { TextField, Button } from '@mui/material';
 import { setUser } from '../../service/user'
+import { Dialog, DialogTitle, DialogContent } from '@mui/material';
 
 
 export default () => {
@@ -19,14 +20,23 @@ export default () => {
     const onSubmit = (data) => {
         dispatch(setUser(data, navigate))
     }
+    const [open, setOpen] = useState(true);
 
-    return (
-        <div className="whiteBack login">
-            <label> Password:</label>
-            <TextField type="password" value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
-            <button onClick={() => { onSubmit(password) }}>Log In</button>
-        </div>
-    )
+    const handleClose = () => {
+        setOpen(false);
+        navigate('/employees')
+    };
+    return <>
+        <Dialog open={open} onClose={handleClose}>
+            <DialogTitle>Login </DialogTitle>
+            <DialogContent>
+                <TextField type="password" value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Enter your Password"
+                />
+                <br></br>
+                <Button variant="outlined" onClick={() => { onSubmit(password) }}>Log In</Button>
+            </DialogContent>
+        </Dialog>
+    </>
 }

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import { Dialog, DialogTitle, DialogContent } from '@mui/material';
 
-export default function () {
+export default  () =>{
     const { state } = useLocation()
     const navigate = useNavigate()
     const [open, setOpen] = useState(true);

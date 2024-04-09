@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom"
 import AddEmployee from './pages/employees/AddEmployee';
 import EmployeesList from './pages/employees/EmployeesList';
-import { Login } from '@mui/icons-material';
+import  Footer from './pages/Footer';
 import Home from './pages/Home';
 import Header from './pages/Header'
 import LogIn from './pages/login/LogIn';
@@ -44,7 +44,7 @@ function App() {
         <Route path="/edit" element={<AddEmployee />}></Route>
         <Route path="/employees/detail" element={<EmployeeDetails />}></Route>
       </Routes>
-
+<footer><Footer></Footer></footer>
     </div>
 
   );

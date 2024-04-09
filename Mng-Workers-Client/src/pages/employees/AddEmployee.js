@@ -63,7 +63,7 @@ export default () => {
         dispatch(getAllRoles())
     }, [dispatch])
 
-    const { register, control, handleSubmit, formState: { errors } } = useForm({
+    const { register, control, handleSubmit,getValues, formState: { errors } } = useForm({
         resolver: yupResolver(schema),
         values: {
             tz: selectEmployee?.tz,
@@ -95,9 +95,12 @@ export default () => {
         })
         return isExist;
     }
-    const onSubmit = (data) => {
+    const submittion = () => {
+        debugger
+
+     const data =   getValues()
         console.log(data);
-        console.log({ ...data, Status: selectEmployee?.status });
+        console.log({ ...data, status: selectEmployee?.status });
 
         if (selectEmployee) {
             dispatch(editEmployee(selectEmployee.id, { ...data, status: selectEmployee?.status }, navigate))
@@ -114,25 +117,29 @@ export default () => {
         navigate('/employees')
     };
     return <>
-        <Dialog open={open} onClose={handleClose}>
-            <DialogTitle>My Form</DialogTitle>
+        <Dialog open={open} onClose={handleClose} PaperProps={{ style: { width: '80%' ,margin:'auto'} }}>
+            <DialogTitle>{selectEmployee ? `Edit ${selectEmployee.firstName} details` : "Add Employee"}</DialogTitle>
             <DialogContent>
-                <form onSubmit={handleSubmit(onSubmit)}>
+                <form onSubmit={handleSubmit(submittion)}>
                     <TextField style={{ width: '80%' }} label="Tz-Identity number"
                         margin="dense" {...register("tz")}
+                        InputProps={{ startAdornment: (<InputAdornment position="start"><FingerprintIcon /></InputAdornment>), }}
                         error={!!errors.tz} helperText={errors.tz?.message} />
                     <br />
                     <TextField style={{ width: '80%' }} label="firstName"
                         margin="dense"{...register("firstName")}
+                        InputProps={{ startAdornment: (<InputAdornment position="start"><AccountCircle /></InputAdornment>), }}
                         error={!!errors.firstName} helperText={errors.firstName?.message} />
                     {/* {errors.FirstName && <p className="ui pointing red basic label">{errors.FirstName?.message}</p>} */}
                     <br />
                     <TextField style={{ width: '80%' }} label="lastName"
                         margin="dense"{...register("lastName")}
+                        InputProps={{ startAdornment: (<InputAdornment position="start"><AccountCircle /></InputAdornment>), }}
                         error={!!errors.lastName} helperText={errors.lastName?.message} />
                     <br />
                     <TextField style={{ width: '80%' }} label="password"
                         margin="dense"{...register("password")}
+                        InputProps={{ startAdornment: (<InputAdornment position="start"><KeyIcon /></InputAdornment>), }}
                         error={!!errors.password} helperText={errors.password?.message} />
                     <br />
                     <FormControl component="fieldset">
@@ -150,24 +157,26 @@ export default () => {
                         margin="dense"{...register("startDate")} type="date"
                         error={!!errors.startDate} helperText={errors.startDate?.message} />
                     <br />
-                    <div>
+                    <div>Roles:<br></br>
                         {rolesEmployee?.map((item, i) => (
                             <div key={i} className="Roles">
-
+                                <hr></hr>
                                 <TextField style={{ width: '80%' }} label="Enter date"
                                     margin="dense" {...register(`rolesEmployee[${i}].enterDate`)}
                                     type="date" error={!!errors?.rolesEmployee?.[i]?.enterDate}
                                     helperText={errors?.rolesEmployee?.[i]?.enterDate?.message}
+                                // startIcon={}
                                 />
                                 {errors.EnterDate && <p className="ui pointing red basic label">{errors.EnterDate?.message}</p>}
-                                <TextField
-                                    placeholder="Is administrative:" margin="dense" color="secondary"
-                                    {...register(`rolesEmployee[${i}].isAdministrative`)} type="checkbox"
-                                    error={!!errors.isAdministrative} helperText={errors.isAdministrative?.message}
-                                />
+                                <div>Is administrative:
+                                    <TextField
+                                        margin="dense" color="secondary"
+                                        {...register(`rolesEmployee[${i}].isAdministrative`)} type="checkbox"
+                                        error={!!errors.isAdministrative} helperText={errors.isAdministrative?.message}
+                                    /></div>
                                 <FormControl variant="standard" sx={{ m: 1, minWidth: 120, maxWidth: 185 }}>
                                     <InputLabel>Role Type:</InputLabel>
-                                    <Select {...register(`rolesEmployee.[${i}].roleId`)}
+                                    <Select {...register(`rolesEmployee[${i}].roleId`)}
                                         label="Role Type" defaultValue={item.roleId || ""} >
                                         <MenuItem value="">
                                             <em>None</em>
@@ -184,11 +193,11 @@ export default () => {
                         ))}
                     </div>
                     <Button variant="outlined" startIcon={<AddIcon />} color="secondary"
-                        onClick={() => appendRole({ RoleId: "", IsAdministrative: false, EnterDate: null })}>
+                        onClick={() => appendRole({ roleId: "", isAdministrative: false, enterDate: null })}>
                         Add Role
                     </Button>
                     <br />
-                    <Button variant="contained" color="secondary" type="submit" className="submitt">Submit</Button>
+                    <Button variant="contained" color="secondary" onClick={()=>{submittion()}} className="submitt">Submit</Button>
                 </form>
             </DialogContent>
         </Dialog>

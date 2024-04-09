@@ -2,45 +2,32 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { deleteEmployee, getEmployees } from "../../service/employees";
-import { Button, Select, MenuItem, Card, CardHeader, CardContent, CardActions, Avatar } from '@mui/material';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography } from '@mui/material';
+import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import ListOutlinedIcon from '@mui/icons-material/ListOutlined';
 import { red, blue } from '@mui/material/colors';
+import Grid from '@mui/material/Grid';
+import TextField from '@mui/material/TextField';
 import Swal from 'sweetalert2';
 import React from 'react';
 import { saveAs } from 'file-saver';
 import ExcelJS from 'exceljs';
 import { decode, typeDecode } from "../../App";
 
-const formatDataForExcel = (employees) => {
-    return employees.map(employee => (
-        {
-            ID: employee.id,
-            FirstName: employee.firstName,
-            LastName: employee.lastName,
-            TZ: employee.tz,
-            StartDate: employee.startDate,
-        }
-    ));
-};
-export default function EmployeeList() {
+export default () => {
     const { user, employees, roles } = useSelector(state => ({
         user: state.user.user,
         employees: state.employee.employees,
         roles: state.role.roles
     }));
-
     const userPermission = (decode(user, typeDecode.Permission))
-
     const [search, setSearch] = useState('')
-    const [render, setRender] = useState('')
-
     const navigate = useNavigate();
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getEmployees(userPermission != 0, search, navigate))
-    }, [search,render]);
+    }, [search]);
 
     const deleteEmployeeHandler = (employee) => {
         Swal.fire({
@@ -53,24 +40,23 @@ export default function EmployeeList() {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
+                dispatch(deleteEmployee(employee, navigate));
                 Swal.fire({
                     title: "Deleted!",
                     text: "This employee has been deleted.",
                     icon: "success"
+                }).then(() => {
+                    dispatch(getEmployees(userPermission != 0, search, navigate))
                 });
-                dispatch(deleteEmployee(employee, navigate));
             }
         })
-
     }
     const downloadExcel = () => {
         const workbook = new ExcelJS.Workbook();
         const worksheet = workbook.addWorksheet('Sheet 1');
-        const headers = ['ID', 'First Name', 'Last Name', 'TZ', 'Start Date'];
+        const headers = ['ID', 'First Name', 'Last Name', 'TZ', 'Male/Female', 'Birth Date', 'Start Date', 'Status', 'Permission', 'Roles'];
         worksheet.addRow(headers)
-        const formattedEmployees = formatDataForExcel(employees);
-        console.log(formattedEmployees);
-        formattedEmployees.forEach((item) => {
+        employees.forEach((item) => {
             worksheet.addRow(Object.values(item))
         })
         workbook.xlsx.writeBuffer().then(buffer => {
@@ -80,10 +66,11 @@ export default function EmployeeList() {
     }
 
     return (
-        <>
+        <><div className="list">
             <Button onClick={() => navigate('/edit', { state: null })} variant="contained" color="primary">Add Employee</Button>
-            <input type="search" placeholder="Search" onChange={(e) => setSearch(e.target.value)} />
+            <TextField type="search" placeholder="Search" onChange={(e) => setSearch(e.target.value)} />
             <Button variant="contained" color="primary" onClick={downloadExcel}>Export to Excel</Button>
+
             <TableContainer component={Paper} style={{ width: '80%', margin: 'auto' }}>
                 <Table>
                     <TableHead>
@@ -114,10 +101,8 @@ export default function EmployeeList() {
                                 <TableCell  >
                                     <div style={{ display: 'flex', justifyContent: 'center' }}>
                                         <Button startIcon={<EditIcon />} onClick={() => navigate('/edit', { state: employee })} variant="outlined" color="primary">Edit</Button>
-                                        <Button startIcon={<DeleteIcon />} onClick={() => { deleteEmployeeHandler(employee, navigate)
-                                    getEmployees(true,search,navigate) }}
-                                            variant="outlined" color="secondary">Delete</Button>
-                                        <Button startIcon={<EditIcon />} onClick={() => navigate('detail', { state: employee })} variant="outlined" color="primary">Details</Button>
+                                        <Button startIcon={<ListOutlinedIcon />} onClick={() => navigate('detail', { state: employee })} variant="outlined" color="secondary">Details</Button>
+                                        <Button startIcon={<DeleteIcon />} onClick={() => { deleteEmployeeHandler(employee, navigate) }} variant="outlined" color="error">Delete</Button>
                                     </div>
                                 </TableCell>
                             </TableRow>
@@ -125,6 +110,6 @@ export default function EmployeeList() {
                     </TableBody>
                 </Table>
             </TableContainer >
-        </>
+        </div></>
     );
 }

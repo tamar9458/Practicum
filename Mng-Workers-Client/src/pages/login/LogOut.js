@@ -1,9 +1,10 @@
 import { useDispatch } from "react-redux"
 import { useNavigate } from "react-router-dom"
-import { Button } from '@mui/material';
 import { setUser } from "../../service/user";
 import { red, blue } from '@mui/material/colors';
 import Swal from 'sweetalert2';
+import { useEffect } from "react";
+
 export default () => {
 
     const dispatch = useDispatch();
@@ -27,11 +28,10 @@ export default () => {
             }
         })
     }
+    useEffect(()=>{
+        logOut()
+    })
     return <>
-        <div className="whiteBack logout">
-            <Button variant="contained" color="secondary"
-                onClick={() => logOut()}>
-                Log Out
-            </Button></div>
+     
     </>
 }
