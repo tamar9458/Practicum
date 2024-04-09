@@ -17,6 +17,7 @@ import CabinIcon from '@mui/icons-material/Cabin';//בית
 import CallIcon from '@mui/icons-material/Call';//טלפון
 import KeyIcon from '@mui/icons-material/Key';//מנעול
 import FingerprintIcon from '@mui/icons-material/Fingerprint';//טביעת אצבע
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const schema = yup.object(
     {
@@ -27,26 +28,11 @@ const schema = yup.object(
         StartDate: yup.date().required('must be fill').min(yup.ref('birthDate'), "The start date of work must be after the date of birth."),
         gander: yup.number().required('must be fill'),
         password: yup.string().nullable(),
-        rolesEmployee: yup.array().of(yup.object().shape({
+        roles: yup.array().of(yup.object().shape({
             roleId: yup.number(),
             isAdministrative: yup.boolean().nullable(),
             lastChange: yup.date().nullable(),
             enterDate: yup.date()
-            // .min(yup.ref('StartDate'),'must be after start date of working'),
-            // .min(yup.ref('LastChange'),
-            //  `Updating to this date need to be at least ${LastChange}`)
-            // .test('enterDateValidation', 'Enter Date must be today or in the future', (value) => {
-            //     const today = new Date();
-            //     const selectedDate = new Date(value);
-            //     // const lastChangeValue = new Date(this.resolve(yup.ref('LastChange')))
-            //     const lastChangeValue = new Date( this.parent.LastChange);
-            //     console.log(yup.ref('LastChange'));
-            //     let valid = true;
-            //     if ((lastChangeValue && selectedDate < lastChangeValue) || selectedDate < today) {
-            //         valid = false;
-            //     }
-            //     return valid;
-            // }),
         }))
             .required('must be fill')
     })
@@ -56,14 +42,14 @@ export default () => {
     const navigate = useNavigate()
     const { state } = useLocation()
     const selectEmployee = state
-    const { roles } = useSelector(x => ({
-        roles: x.role.roles
+    const { allRoles } = useSelector(x => ({
+        allRoles: x.role.roles
     }))
     useEffect(() => {
         dispatch(getAllRoles())
     }, [dispatch])
 
-    const { register, control, handleSubmit,getValues, formState: { errors } } = useForm({
+    const { register, control, handleSubmit, getValues, formState: { errors } } = useForm({
         resolver: yupResolver(schema),
         values: {
             tz: selectEmployee?.tz,
@@ -73,7 +59,7 @@ export default () => {
             startDate: selectEmployee?.startDate?.split('T')[0],
             password: selectEmployee?.password,
             gender: selectEmployee?.gender,
-            rolesEmployee: selectEmployee?.roles ? selectEmployee.roles.map(role => ({
+            roles: selectEmployee?.roles ? selectEmployee.roles.map(role => ({
                 roleId: role.roleId || "",
                 isAdministrative: role.isAdministrative,
                 enterDate: role.enterDate?.split('T')[0],
@@ -82,12 +68,12 @@ export default () => {
         }
     })
 
-    const { fields: rolesEmployee, append: appendRole } = useFieldArray({
-        control, name: "rolesEmployee"
+    const { fields: roles, append: appendRole, remove } = useFieldArray({
+        control, name: "roles"
     })
 
     const isRoleIdExists = (index) => {
-        const roleIdsArray = rolesEmployee.map(field => field.roleId);
+        const roleIdsArray = roles.map(field => field.roleId);
         var isExist = false
         roleIdsArray?.forEach((role) => {
             if (role == index)
@@ -95,17 +81,13 @@ export default () => {
         })
         return isExist;
     }
+
     const submittion = () => {
-        debugger
-
-     const data =   getValues()
-        console.log(data);
-        console.log({ ...data, status: selectEmployee?.status });
-
+        const data = getValues()
         if (selectEmployee) {
-            dispatch(editEmployee(selectEmployee.id, { ...data, status: selectEmployee?.status }, navigate))
+            dispatch(editEmployee(selectEmployee.id, { ...data, status: selectEmployee?.status,  gender: +data.gender }, navigate))
         } else {
-            dispatch(addEmployee({ ...data, status: true }, navigate))
+            dispatch(addEmployee({ ...data, status: true, gender: 1 }, navigate))
         }
         navigate("/")
     }
@@ -117,7 +99,7 @@ export default () => {
         navigate('/employees')
     };
     return <>
-        <Dialog open={open} onClose={handleClose} PaperProps={{ style: { width: '80%' ,margin:'auto'} }}>
+        <Dialog open={open} onClose={handleClose} PaperProps={{ style: { width: '80%', margin: 'auto' } }}>
             <DialogTitle>{selectEmployee ? `Edit ${selectEmployee.firstName} details` : "Add Employee"}</DialogTitle>
             <DialogContent>
                 <form onSubmit={handleSubmit(submittion)}>
@@ -158,30 +140,29 @@ export default () => {
                         error={!!errors.startDate} helperText={errors.startDate?.message} />
                     <br />
                     <div>Roles:<br></br>
-                        {rolesEmployee?.map((item, i) => (
+                        {roles?.map((item, i) => (
                             <div key={i} className="Roles">
                                 <hr></hr>
                                 <TextField style={{ width: '80%' }} label="Enter date"
-                                    margin="dense" {...register(`rolesEmployee[${i}].enterDate`)}
-                                    type="date" error={!!errors?.rolesEmployee?.[i]?.enterDate}
-                                    helperText={errors?.rolesEmployee?.[i]?.enterDate?.message}
-                                // startIcon={}
+                                    margin="dense" {...register(`roles[${i}].enterDate`)}
+                                    type="date" error={!!errors?.roles?.[i]?.enterDate}
+                                    helperText={errors?.roles?.[i]?.enterDate?.message}
                                 />
                                 {errors.EnterDate && <p className="ui pointing red basic label">{errors.EnterDate?.message}</p>}
                                 <div>Is administrative:
                                     <TextField
                                         margin="dense" color="secondary"
-                                        {...register(`rolesEmployee[${i}].isAdministrative`)} type="checkbox"
+                                        {...register(`roles[${i}].isAdministrative`)} type="checkbox"
                                         error={!!errors.isAdministrative} helperText={errors.isAdministrative?.message}
                                     /></div>
                                 <FormControl variant="standard" sx={{ m: 1, minWidth: 120, maxWidth: 185 }}>
                                     <InputLabel>Role Type:</InputLabel>
-                                    <Select {...register(`rolesEmployee[${i}].roleId`)}
+                                    <Select {...register(`roles[${i}].roleId`)}
                                         label="Role Type" defaultValue={item.roleId || ""} >
                                         <MenuItem value="">
                                             <em>None</em>
                                         </MenuItem>
-                                        {roles?.filter(role => !isRoleIdExists(role.id) || role.id === item.roleId)
+                                        {allRoles?.filter(role => !isRoleIdExists(role.id) || role.id === item.roleId)
                                             .map((role) => (
                                                 <MenuItem key={role.id} value={role.id} >
                                                     {role.description}
@@ -189,19 +170,19 @@ export default () => {
                                             ))}
                                     </Select>
                                 </FormControl>
+                                <Button startIcon={<DeleteIcon />} onClick={() => { remove(i) }}color="primary" ></Button>
+
                             </div>
                         ))}
                     </div>
-                    <Button variant="outlined" startIcon={<AddIcon />} color="secondary"
+                    <Button variant="outlined" startIcon={<AddIcon />} color="primary"
                         onClick={() => appendRole({ roleId: "", isAdministrative: false, enterDate: null })}>
                         Add Role
                     </Button>
                     <br />
-                    <Button variant="contained" color="secondary" onClick={()=>{submittion()}} className="submitt">Submit</Button>
+                    <Button variant="contained" color="primary" onClick={() => { submittion() }} className="submitt">Submit</Button>
                 </form>
             </DialogContent>
         </Dialog>
-
-
     </>
 }

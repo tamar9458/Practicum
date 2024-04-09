@@ -1,4 +1,3 @@
-
 import axios from 'axios';
 import { API_URL } from '../App';
 import Swal from 'sweetalert2';
@@ -14,26 +13,6 @@ function searchValueInRoles(roles, search) {
         })
     }
     return res
-}
-function matchToCSharp(data) {
-    const parseDate = (dateString) => {
-        if (dateString) {
-            const parts = dateString.split('-');
-            return new Date(parts[0], parts[1] - 1, parts[2]);
-        }
-        return new Date()
-    };
-
-    data.birthDate = new Date(data?.birthDate).toISOString()
-    data.startDate = new Date(data?.startDate).toISOString()
-    data.rolesEmployee = data?.rolesEmployee?.map((role) =>
-    ({
-        ...role,
-        // lastChange: new Date(role?.lastChange).toISOString() ,
-        lastChange: parseDate(role.lastChange).toISOString(),
-        enterDate: parseDate(role?.enterDate).toISOString()
-    }))
-    return data;
 }
 export const getEmployees = (byUser, search, navigate) => {
     return dispatch => {
@@ -73,11 +52,7 @@ export const getEmployees = (byUser, search, navigate) => {
     }
 }
 export const addEmployee = (data, navigate) => {
-    // console.log('service', data);
-    // console.log('format', matchToCSharp(data));
-    const formatData= matchToCSharp(data)
-    console.log(formatData);
-    return dispatch => axios.post(`${API_URL}/Employee`, formatData)
+    return dispatch => axios.post(`${API_URL}/Employee`, data)
         .then((res) => {
             dispatch({ type: "ADD_EMPLOYEE", data: res.data })
             Swal.fire({
@@ -95,14 +70,11 @@ export const addEmployee = (data, navigate) => {
         })
 }
 export const editEmployee = (id, data, navigate) => {
-    console.log('service', data);
-    console.log('format', matchToCSharp(data));
-
-    return dispatch => axios.put(`${API_URL}/Employee/${id}`, { ...matchToCSharp(data) })
+    return dispatch => axios.put(`${API_URL}/Employee/${id}`, data)
         .then((res) => {
             dispatch({ type: "EDIT_RECIPE", data: res.data })
             Swal.fire({
-                title: 'Adding complete successfull',
+                title: 'Edit complete successfull',
                 icon: 'success'
             })
             getEmployees(true, '', navigate)
@@ -118,14 +90,12 @@ export const deleteEmployee = (data, navigate) => {
     return dispatch => axios.delete(`${API_URL}/Employee/${data.id}`)
         .then((res) => {
             dispatch({ type: "DELETE_RECIPE", data: res.data })
-            // getEmployees(true, '', navigate)
         })
         .catch(() => {
             Swal.fire({
                 title: 'error...',
                 icon: 'error'
             })
-            // navigate('/employees')
         }
         )
 }

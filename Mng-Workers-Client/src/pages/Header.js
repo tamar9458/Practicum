@@ -10,7 +10,7 @@ export default () => {
     const buttonStyle = {
         color: '#0076ce',
         backgroundColor: '#f5f5f5',
-        marginRight: '10px',
+        marginRight: '5px',
         border:'1px solid #0076ce',
         borderRadius:'10px',
         transition: 'background-color 0.3s, color 0.3s',

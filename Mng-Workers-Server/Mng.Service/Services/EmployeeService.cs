@@ -36,6 +36,7 @@ namespace Mng.Service.Services
         public async Task<Employee> PostAsync(Employee value)
         {
             value.Roles = value.Roles.Distinct().ToList();
+            
             var today = DateTime.Now.Date;
             if (value.Roles.Any(r =>r.EnterDate<r.LastChange|| r.EnterDate.Date < today))
                 return null;

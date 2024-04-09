@@ -1,30 +1,22 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
 import Typography from '@mui/material/Typography';
-import { height } from '@mui/system';
+import easy from '../images/easy.jpg';
+import fast from '../images/fast.jpg';
+
+import '../App.css';
 
 const images = [
   {
-    url: '/static/images/buttons/breakfast.jpg',
+    url: fast,
     title: 'Fast',
     width: '40%',
   },
   {
-    url: '/static/images/buttons/burgers.jpg',
+    url: easy,
     title: 'Easy',
     width: '30%',
-  },
-  {
-    url: '/static/images/buttons/camera.jpg',
-    title: 'Professional',
-    width: '30%',
-  },
-  {
-    url: '/static/images/buttons/sunset.jpg',
-    title: 'Relaxing',
-    width: '40%',
   },
 ];
 
@@ -32,7 +24,7 @@ const ImageButton = styled(ButtonBase)(({ theme }) => ({
   position: 'relative',
   height: 200,
   [theme.breakpoints.down('sm')]: {
-    width: '100% !important', 
+    width: '100% !important',
     height: 100,
   },
   '&:hover, &.Mui-focusVisible': {
@@ -69,6 +61,7 @@ const Image = styled('span')(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'center',
   color: theme.palette.common.white,
+  backgroundImage: `url(${easy})`,
 }));
 
 const ImageBackdrop = styled('span')(({ theme }) => ({
@@ -95,17 +88,28 @@ const ImageMarked = styled('span')(({ theme }) => ({
 const Row = styled('div')({
   display: 'flex',
   width: '100%',
-  height:'42vh'
+  height: '42vh'
 });
 
 export default () => {
-    return (
+  return (
     <>
       <Row>
-        <ImageButton focusRipple style={{ width: '50%' }}>
-          <ImageSrc style={{ backgroundImage: `url(${images[0].url})` ,height:'42vh'}} />
+        <ImageButton focusRipple style={{ width: '50%', height: '42vh' }}>
+          <ImageSrc style={{
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            height: '100%',
+            width: '100%',
+          }} />
           <ImageBackdrop className="MuiImageBackdrop-root" />
-          <Image>
+          <Image style={{
+            backgroundImage: `url(${images[0].url})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            height: '100%',
+            width: '100%',
+          }}>
             <Typography
               component="span"
               variant="subtitle1"
@@ -123,19 +127,30 @@ export default () => {
           </Image>
         </ImageButton>
         <Typography variant="subtitle1" style={{ padding: '16px', width: '50%' }}>
-           loremIpsum
-            Additional text for the first image
+          loremIpsum
+          Additional text for the first image
         </Typography>
       </Row>
-      
+
       <Row>
         <Typography variant="subtitle1" style={{ padding: '16px', width: '50%' }}>
           Additional text for the second image
         </Typography>
-        <ImageButton focusRipple style={{ width: '50%' }}>
-          <ImageSrc style={{ backgroundImage: `url(${images[1].url})` }} />
+        <ImageButton focusRipple style={{ width: '50%', height: '42vh' }}>
+          <ImageSrc style={{
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            height: '100%',
+            width: '100%',
+          }} />
           <ImageBackdrop className="MuiImageBackdrop-root" />
-          <Image>
+          <Image style={{
+            backgroundImage: `url(${images[1].url})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            height: '100%',
+            width: '100%',
+          }}>
             <Typography
               component="span"
               variant="subtitle1"
@@ -148,58 +163,6 @@ export default () => {
               }}
             >
               {images[1].title}
-              <ImageMarked className="MuiImageMarked-root" />
-            </Typography>
-          </Image>
-        </ImageButton>
-      </Row>
-      
-      <Row>
-        <ImageButton focusRipple style={{ width: '50%' }}>
-          <ImageSrc style={{ backgroundImage: `url(${images[2].url})` }} />
-          <ImageBackdrop className="MuiImageBackdrop-root" />
-          <Image>
-            <Typography
-              component="span"
-              variant="subtitle1"
-              color="inherit"
-              sx={{
-                position: 'relative',
-                p: 4,
-                pt: 2,
-                pb: (theme) => `calc(${theme.spacing(1)} + 6px)`,
-              }}
-            >
-              {images[2].title}
-              <ImageMarked className="MuiImageMarked-root" />
-            </Typography>
-          </Image>
-        </ImageButton>
-        <Typography variant="subtitle1" style={{ padding: '16px', width: '50%' }}>
-          Additional text for the third image
-        </Typography>
-      </Row>
-
-      <Row>
-        <Typography variant="subtitle1" style={{ padding: '16px', width: '50%' }}>
-          Additional text for the fourth image
-        </Typography>
-        <ImageButton focusRipple style={{ width: '50%' }}>
-          <ImageSrc style={{ backgroundImage: `url(${images[3].url})` }} />
-          <ImageBackdrop className="MuiImageBackdrop-root" />
-          <Image>
-            <Typography
-              component="span"
-              variant="subtitle1"
-              color="inherit"
-              sx={{
-                position: 'relative',
-                p: 4,
-                pt: 2,
-                pb: (theme) => `calc(${theme.spacing(1)} + 6px)`,
-              }}
-            >
-              {images[3].title}
               <ImageMarked className="MuiImageMarked-root" />
             </Typography>
           </Image>

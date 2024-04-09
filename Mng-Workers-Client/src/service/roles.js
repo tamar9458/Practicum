@@ -11,13 +11,27 @@ export const getAllRoles = () => {
             .catch((error) => {
                 Swal.fire({
                     title: 'error...',
-                    icon: 'failed'
+                    icon: 'error'
                 })
             })
     }
 }
 export const addRole = (data) => {
     return dispatch => {
-
+        axios.post(`${API_URL}/Role`,data)
+        .then((res) => {
+            dispatch({ type: "ADD_ROLE", data: res.data })
+            Swal.fire({
+                title: 'Add role successfully',
+                icon: 'success'
+            })
+            getAllRoles()
+        })
+        .catch((error) => {
+            Swal.fire({
+                title: 'error...',
+                icon: 'error'
+            })
+        })
     }
 }

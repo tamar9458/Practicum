@@ -7,6 +7,6 @@ namespace Mng.Api.PostModels
         public bool IsAdministrative { get; set; }
         public int RoleId { get; set; }
         public DateTime EnterDate { get; set; }
-        public DateTime? LastChange { get; set; }=DateTime.Now;
+        //public DateTime? LastChange { get; set; }=DateTime.Now;
     }
 }

@@ -13,7 +13,7 @@ namespace Mng.Core.Entities
         public int RoleId { get; set; }
         public Role Role { get; set; }
         public DateTime EnterDate { get; set; }
-        public DateTime LastChange { get; set; }
+        public DateTime LastChange { get; set; }=DateTime.Now;  
 
 
     }

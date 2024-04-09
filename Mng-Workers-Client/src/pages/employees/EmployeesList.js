@@ -5,15 +5,18 @@ import { deleteEmployee, getEmployees } from "../../service/employees";
 import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import SearchIcon from '@mui/icons-material/Search';
+import InputAdornment from '@mui/material/InputAdornment';
 import ListOutlinedIcon from '@mui/icons-material/ListOutlined';
 import { red, blue } from '@mui/material/colors';
-import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Swal from 'sweetalert2';
 import React from 'react';
 import { saveAs } from 'file-saver';
 import ExcelJS from 'exceljs';
 import { decode, typeDecode } from "../../App";
+import AddRole from "../roles/AddRole"
+import '../../App.css'
 
 export default () => {
     const { user, employees, roles } = useSelector(state => ({
@@ -22,11 +25,13 @@ export default () => {
         roles: state.role.roles
     }));
     const userPermission = (decode(user, typeDecode.Permission))
+    const levelPermission = userPermission === "NONE" ? 0 : userPermission === "WATCHING" ? 1 : userPermission === "EDIT" ? 2 : 3
+    const [showAddRole, setShowAddRole] = useState(false);
     const [search, setSearch] = useState('')
     const navigate = useNavigate();
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(getEmployees(userPermission != 0, search, navigate))
+        dispatch(getEmployees(userPermission != "NONE", search, navigate))
     }, [search]);
 
     const deleteEmployeeHandler = (employee) => {
@@ -46,7 +51,7 @@ export default () => {
                     text: "This employee has been deleted.",
                     icon: "success"
                 }).then(() => {
-                    dispatch(getEmployees(userPermission != 0, search, navigate))
+                    dispatch(getEmployees(userPermission != "NONE", search, navigate))
                 });
             }
         })
@@ -67,10 +72,21 @@ export default () => {
 
     return (
         <><div className="list">
-            <Button onClick={() => navigate('/edit', { state: null })} variant="contained" color="primary">Add Employee</Button>
-            <TextField type="search" placeholder="Search" onChange={(e) => setSearch(e.target.value)} />
-            <Button variant="contained" color="primary" onClick={downloadExcel}>Export to Excel</Button>
-
+            <br></br>
+            <div className="top">
+                {showAddRole ? (<>
+                    <AddRole />  <Button onClick={() => setShowAddRole(false)}>Close Add Role</Button> </>
+                ) : (
+                    <Button disabled={levelPermission < 2} variant="outlined" onClick={() => setShowAddRole(true)}>Add Role</Button>
+                )}
+                <Button onClick={() => navigate('/edit', { state: null })} variant="outlined"
+                    disabled={levelPermission < 2} color="primary">Add Employee</Button>
+                <Button variant="outlined" disabled={levelPermission < 2} color="primary"
+                    onClick={downloadExcel}>Export to Excel</Button>
+                <TextField type="search" placeholder="Search" onChange={(e) => setSearch(e.target.value)}
+                    InputProps={{ startAdornment: (<InputAdornment position="start"><SearchIcon /></InputAdornment>), }} />
+            </div>
+            <br></br>
             <TableContainer component={Paper} style={{ width: '80%', margin: 'auto' }}>
                 <Table>
                     <TableHead>
@@ -100,9 +116,9 @@ export default () => {
                                 <TableCell style={{ fontSize: '16px' }}>{new Date(employee.startDate).toISOString().split('T')[0]}</TableCell>
                                 <TableCell  >
                                     <div style={{ display: 'flex', justifyContent: 'center' }}>
-                                        <Button startIcon={<EditIcon />} onClick={() => navigate('/edit', { state: employee })} variant="outlined" color="primary">Edit</Button>
-                                        <Button startIcon={<ListOutlinedIcon />} onClick={() => navigate('detail', { state: employee })} variant="outlined" color="secondary">Details</Button>
-                                        <Button startIcon={<DeleteIcon />} onClick={() => { deleteEmployeeHandler(employee, navigate) }} variant="outlined" color="error">Delete</Button>
+                                        <Button startIcon={<EditIcon />} onClick={() => navigate('/edit', { state: employee })} variant="outlined" color="primary" disabled={levelPermission < 2}>Edit</Button>
+                                        <Button startIcon={<ListOutlinedIcon />} onClick={() => navigate('detail', { state: employee })} variant="outlined" color="secondary" disabled={levelPermission < 1}>Details</Button>
+                                        <Button startIcon={<DeleteIcon />} onClick={() => { deleteEmployeeHandler(employee, navigate) }} variant="outlined" color="error" disabled={levelPermission < 3}>Delete</Button>
                                     </div>
                                 </TableCell>
                             </TableRow>
