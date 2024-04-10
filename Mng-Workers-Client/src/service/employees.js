@@ -59,7 +59,6 @@ export const addEmployee = (data, navigate) => {
                 title: 'Adding complete successfull',
                 icon: 'success'
             })
-            getEmployees(true, '', navigate)
         })
         .catch(() => {
             Swal.fire({
@@ -67,6 +66,9 @@ export const addEmployee = (data, navigate) => {
                 icon: 'error'
             })
             navigate('/employees')
+        }).finally(() => {
+            getEmployees(true, '', navigate)
+            navigate('/home')
         })
 }
 export const editEmployee = (id, data, navigate) => {

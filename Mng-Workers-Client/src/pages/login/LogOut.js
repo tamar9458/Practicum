@@ -6,9 +6,8 @@ import Swal from 'sweetalert2';
 import { useEffect } from "react";
 
 export default () => {
-
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
     function logOut() {
         Swal.fire({
             title: "Log Out?",
@@ -23,15 +22,14 @@ export default () => {
                 Swal.fire({
                     title: "See you later!",
                     icon: "success"
-                });
+                })
                 dispatch(setUser(null, navigate))
             }
         })
     }
-    useEffect(()=>{
+    useEffect(() => {
         logOut()
     })
     return <>
-     
     </>
 }

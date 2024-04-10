@@ -2,18 +2,15 @@ import { useEffect, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import { Dialog, DialogTitle, DialogContent } from '@mui/material';
 
-export default  () =>{
+export default () => {
     const { state } = useLocation()
     const navigate = useNavigate()
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(true)
 
-    useEffect(() => {
-        console.log(state);
-    })
     const handleClose = () => {
         setOpen(false);
         navigate('/employees')
-    };
+    }
     return <>
         <Dialog open={open} onClose={handleClose}>
             <DialogTitle>Details</DialogTitle>

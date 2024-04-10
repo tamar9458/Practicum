@@ -41,10 +41,11 @@ namespace Mng.Data.Repositories
             if (existEmpTz != null)
                 throw new ArgumentException("ERROR in Tz. try another");
 
+
             if (!string.IsNullOrEmpty(value.Password))
             {
                 Employee existEmpPassword = await _context.Employees.FirstOrDefaultAsync(e => e.Password == value.Password);
-                if (existEmpPassword == null)
+                if (existEmpPassword != null)
                     throw new ArgumentException("ERROR in password. try another");
             }
             _context.Employees.Add(value);
@@ -66,14 +67,14 @@ namespace Mng.Data.Repositories
                 employee.Status = value.Status;
 
                 Employee existEmpTz = await _context.Employees.FirstOrDefaultAsync(e => e.TZ == value.TZ);
-                if (existEmpTz!=null)
-                    throw new ArgumentException("ERROR in Tz. try another");
+                if (existEmpTz != null&& existEmpTz.Id != id)
+                        throw new ArgumentException("ERROR in Tz. try another");
                 employee.TZ = value.TZ;
 
                 if (!string.IsNullOrEmpty(value.Password))
                 {
                     Employee existEmpPassword = await _context.Employees.FirstOrDefaultAsync(e => e.Password == value.Password);
-                       if (existEmpPassword==null)
+                    if (existEmpPassword != null && existEmpPassword.Id != id)
                         throw new ArgumentException("ERROR in password. try another");
                     employee.Password = value.Password;
                 }

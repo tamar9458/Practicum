@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom"
 import AddEmployee from './pages/employees/AddEmployee';
 import EmployeesList from './pages/employees/EmployeesList';
-import  Footer from './pages/Footer';
+import Footer from './pages/Footer';
 import Home from './pages/Home';
 import Header from './pages/Header'
 import LogIn from './pages/login/LogIn';
@@ -13,14 +13,14 @@ import { jwtDecode } from 'jwt-decode';
 import EmployeeDetails from './pages/employees/EmployeeDetails';
 
 export const API_URL = `https://localhost:7282/api`
-export function decode(user,typeDecode) {
+export function decode(user, typeDecode) {
   if (user) {
-      const decodedToken = jwtDecode(user);
-      return typeDecode==1?decodedToken.Permission:decodedToken.Name
+    const decodedToken = jwtDecode(user);
+    return typeDecode == 1 ? decodedToken.Permission : decodedToken.Name
   }
   else if (localStorage.getItem('accessToken') != "null") {
-      const decodedToken = jwtDecode(localStorage.getItem('accessToken'));
-      return typeDecode==1?decodedToken.Permission:decodedToken.Name
+    const decodedToken = jwtDecode(localStorage.getItem('accessToken'));
+    return typeDecode == 1 ? decodedToken.Permission : decodedToken.Name
   }
   return 0
 }
@@ -44,7 +44,7 @@ function App() {
         <Route path="/edit" element={<AddEmployee />}></Route>
         <Route path="/employees/detail" element={<EmployeeDetails />}></Route>
       </Routes>
-<footer><Footer></Footer></footer>
+      <footer><Footer></Footer></footer>
     </div>
 
   );

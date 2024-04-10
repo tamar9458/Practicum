@@ -5,8 +5,8 @@ const initalseState = {
 const reducer = (state = initalseState, action) => {
     switch (action.type) {
         case "SET_EMPLOYEE": {
-           const employees = action.data.filter(x => x.status);
-        return { ...state, employees:employees }
+            const employees = action.data.filter(x => x.status);
+            return { ...state, employees: employees }
         }
         case "ADD_EMPLOYEE": {
             const employees = [...state.employees];

@@ -23,16 +23,19 @@ export default () => {
         user: state.user.user,
         employees: state.employee.employees,
         roles: state.role.roles
-    }));
+    }))
     const userPermission = (decode(user, typeDecode.Permission))
     const levelPermission = userPermission === "NONE" ? 0 : userPermission === "WATCHING" ? 1 : userPermission === "EDIT" ? 2 : 3
-    const [showAddRole, setShowAddRole] = useState(false);
+    const [showAddRole, setShowAddRole] = useState(false)
     const [search, setSearch] = useState('')
     const navigate = useNavigate();
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getEmployees(userPermission != "NONE", search, navigate))
-    }, [search]);
+    })
+    useEffect(() => {
+        dispatch(getEmployees(userPermission != "NONE", search, navigate))
+    }, [search])
 
     const deleteEmployeeHandler = (employee) => {
         Swal.fire({
@@ -52,14 +55,14 @@ export default () => {
                     icon: "success"
                 }).then(() => {
                     dispatch(getEmployees(userPermission != "NONE", search, navigate))
-                });
+                })
             }
         })
     }
     const downloadExcel = () => {
         const workbook = new ExcelJS.Workbook();
-        const worksheet = workbook.addWorksheet('Sheet 1');
-        const headers = ['ID', 'First Name', 'Last Name', 'TZ', 'Male/Female', 'Birth Date', 'Start Date', 'Status', 'Permission', 'Roles'];
+        const worksheet = workbook.addWorksheet('Sheet 1')
+        const headers = ['ID', 'First Name', 'Last Name', 'TZ', 'Male/Female', 'Birth Date', 'Start Date', 'Status', 'Permission', 'Roles']
         worksheet.addRow(headers)
         employees.forEach((item) => {
             worksheet.addRow(Object.values(item))
@@ -86,7 +89,7 @@ export default () => {
                 <TextField type="search" placeholder="Search" onChange={(e) => setSearch(e.target.value)}
                     InputProps={{ startAdornment: (<InputAdornment position="start"><SearchIcon /></InputAdornment>), }} />
             </div>
-            <h2 style={{width:'40%',marginLeft:'10%'}}>Employees list</h2>
+            <h2 style={{ width: '40%', marginLeft: '10%' }}>Employees list</h2>
             <TableContainer component={Paper} style={{ width: '80%', margin: 'auto' }}>
                 <Table>
                     <TableHead>
@@ -109,7 +112,6 @@ export default () => {
                         {employees?.map((employee) => (
                             <TableRow key={employee.id}>
                                 <TableCell style={{ fontSize: '16px' }}>
-                                    {/* <Avatar sx={{ bgcolor: blue[500] }}>{employee.firstName[0]}</Avatar> */}
                                     {' '}{employee.firstName} {employee.lastName}
                                 </TableCell>
                                 <TableCell style={{ fontSize: '16px' }}>{employee.tz}</TableCell>

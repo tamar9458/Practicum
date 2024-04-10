@@ -1,0 +1,10 @@
+.text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #55647057;
+    color: rgb(8, 14, 48);
+    font-size: 24px;
+}

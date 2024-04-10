@@ -7,7 +7,7 @@ const reducer = (state = initalseState, action) => {
 
     switch (action.type) {
         case "SET_USER":
-            return { ...state, user: action.data}
+            return { ...state, user: action.data }
         default: return { ...state }
     }
 }

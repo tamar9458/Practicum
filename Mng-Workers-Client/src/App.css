@@ -1,17 +1,3 @@
-/* .App {
-  text-align: center;
-}*/
-/* .App {
-  background-image: url(./images/management2.jpg);
-
-  height: 100vh;
-  background-size: cover;
-  background-attachment: fixed;
-} */
-.green{
-  /* background-image: url(/src/images/easy.jpg); */
-background-color: green;
-}
 .header {
   display: flex;
   align-items: center;
@@ -25,167 +11,22 @@ background-color: green;
   margin-right: 10px;
 }
 
-.header-buttons:hover {
-  background-color: #0076ce;
-  color: aliceblue;
-
-}
-.list{
+.list {
   background-color: white;
   height: 100%;
 }
-.top{
+
+.top {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
-/* .container {
-  width: 60%;
-  height: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-left: 20%;
-  margin-top: 5%;
-  padding-top: 10%;
-} */
 
-/* 
- .welcome {
-  font-size: 90px;
-  color: black;
-  margin-top: 50px;
-  margin-bottom: 30px;
-
-}
-
-.here {
-  font-size: 35px;
-  color: black;
-} */
-
-/*.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.whiteBack {
-  background-color: white;
-  width: max-content;
-  height: fit-content;
-  padding: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.login {
-  padding: 15px;
-  margin: 2% 43%;
-}
-
-.logout {
-  flex-direction: column;
-  margin: 2% 43%;
-  padding: 15px;
-}
-.signup {
-  margin: 2% 34%;
-  padding: 5px 90px;
-}
-.cards {
-  width: 60%;
-  align-content: center;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  margin-top: 2%;
-  margin-left: 20%;
-  margin-right: 20%;
-}
-.recipesBack{
-  background-color: rgb(10 7 13 / 55%);
-  width: 100vw;
-  height: 100%;
-  align-items: flex-start;
-}
-.shop {
-  flex-direction: row;
-}
-
-.show {
-  width: 50%;
-  margin-left: 40%;
-  margin-right: 40%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  
-}
-
-.buy {
-  display: flex;
-  align-items: center;
-  flex-direction: row-reverse;
-  justify-content: space-between;
-  flex-wrap: nowrap;
-}
-
-.add {
-  background-color: white;
-  height: fit-content;
-  width: 50%;
-  margin: 2% 10%;
-  padding: 5%;
-}
-.ingrident{
-display: flex;
-justify-content: space-evenly;
-width: 100%;
-}
-.ingridItem{
-   width: 30%;
-}
-.submitt {
-  margin-top: 2px;
-}
-
-.cardOne {
-  margin: 10px 10px;
-}
-.filter{
-  width: 100%;
-}
-.addButtens{
-  width: 100%;
-  flex-direction: column;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-} */
 .header {
   background-color: #0076ce;
   color: white;
   display: flex;
+  align-items: center;
   padding: 10px;
   justify-content: space-between;
 }

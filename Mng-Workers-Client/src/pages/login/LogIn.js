@@ -14,13 +14,13 @@ import { Dialog, DialogTitle, DialogContent } from '@mui/material';
 
 
 export default () => {
-    const dispatch = useDispatch();
-    const [password, setPassword] = useState([]);
-    const navigate = useNavigate();
+    const dispatch = useDispatch()
+    const [password, setPassword] = useState([])
+    const navigate = useNavigate()
     const onSubmit = (data) => {
         dispatch(setUser(data, navigate))
     }
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(true)
 
     const handleClose = () => {
         setOpen(false);

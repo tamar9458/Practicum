@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
-import { useLocation, useNavigate } from "react-router-dom"
-import { TextField, Button } from "@mui/material"
+import { useNavigate } from "react-router-dom"
+import { TextField } from "@mui/material"
 import InputAdornment from '@mui/material/InputAdornment';
 import WorkIcon from '@mui/icons-material/Work'; //תיק עבודה
 import { useForm } from 'react-hook-form';
@@ -29,7 +28,6 @@ export default () => {
         <>
             <TextField
                 label="new role description"
-               // margin="dense"
                 {...register("description")}
                 InputProps={{ startAdornment: (<InputAdornment position="start"><WorkIcon /></InputAdornment>) }}
                 error={!!errors.description}
@@ -37,5 +35,5 @@ export default () => {
             />
             <button onClick={() => { onSubmit() }} color="primary">Add</button>
         </>
-    );
+    )
 }

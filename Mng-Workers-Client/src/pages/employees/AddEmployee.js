@@ -49,7 +49,7 @@ export default () => {
         dispatch(getAllRoles())
     }, [dispatch])
 
-    const { register, control, handleSubmit, getValues, formState: { errors } } = useForm({
+    const { register, control, handleSubmit, getValues, setValue, formState: { errors } } = useForm({
         resolver: yupResolver(schema),
         values: {
             tz: selectEmployee?.tz,
@@ -89,14 +89,13 @@ export default () => {
         } else {
             dispatch(addEmployee({ ...data, status: true, gender: 1 }, navigate))
         }
-        navigate("/employees")
     }
 
     const [open, setOpen] = useState(true);
 
     const handleClose = () => {
         setOpen(false);
-        navigate('/employees')
+        // navigate('/home')
     };
     return <>
         <Dialog open={open} onClose={handleClose} PaperProps={{ style: { width: '80%', margin: 'auto' } }}>
@@ -112,7 +111,6 @@ export default () => {
                         margin="dense"{...register("firstName")}
                         InputProps={{ startAdornment: (<InputAdornment position="start"><AccountCircle /></InputAdornment>), }}
                         error={!!errors.firstName} helperText={errors.firstName?.message} />
-                    {/* {errors.FirstName && <p className="ui pointing red basic label">{errors.FirstName?.message}</p>} */}
                     <br />
                     <TextField style={{ width: '80%' }} label="lastName"
                         margin="dense"{...register("lastName")}
@@ -125,9 +123,11 @@ export default () => {
                         error={!!errors.password} helperText={errors.password?.message} />
                     <br />
                     <FormControl component="fieldset">
-                        <RadioGroup {...register("gender")} aria-label="gender" name="gender" defaultValue={selectEmployee?.gender}>
-                            <FormControlLabel value={1} control={<Radio />} label="Male" />
-                            <FormControlLabel value={2} control={<Radio />} label="Female" />
+                        <RadioGroup
+                            {...register("gender")} aria-label="gender" name="gender" defaultValue={selectEmployee?.gender}
+                            onChange={(e) => setValue("gender", Number(e.target.value))}>
+                            <FormControlLabel value="1" control={<Radio />} label="Male" />
+                            <FormControlLabel value="2" control={<Radio />} label="Female" />
                         </RadioGroup>
                     </FormControl>
                     <br />
@@ -181,7 +181,7 @@ export default () => {
                     </Button>
                     <br />
                     <Button variant="contained" color="primary"
-                         onClick={() => { submittion() }} 
+                        onClick={() => { submittion() }}
                         className="submitt">Submit</Button>
                 </form>
             </DialogContent>
