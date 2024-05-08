@@ -25,16 +25,22 @@ export default () => {
         roles: state.role.roles
     }))
     const userPermission = (decode(user, typeDecode.Permission))
-    const levelPermission = userPermission === "NONE" ? 0 : userPermission === "WATCHING" ? 1 : userPermission === "EDIT" ? 2 : 3
+    const levelPermission = 3
+    //the above row will be replace to the next row at 30.05.2024
+    // const levelPermission = userPermission === "NONE" ? 0 : userPermission === "WATCHING" ? 1 : userPermission === "EDIT" ? 2 : 3
     const [showAddRole, setShowAddRole] = useState(false)
     const [search, setSearch] = useState('')
     const navigate = useNavigate();
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(getEmployees(userPermission != "NONE", search, navigate))
-    })
+        dispatch(getEmployees(true, search, navigate))
+        //the above row will be replace to the next row at 30.05.2024
+        // dispatch(getEmployees(userPermission != "NONE", search, navigate))
+    },[])
     useEffect(() => {
-        dispatch(getEmployees(userPermission != "NONE", search, navigate))
+        dispatch(getEmployees(true, search, navigate))
+        //the above row will be replace to the next row at 30.05.2024
+        // dispatch(getEmployees(userPermission != "NONE", search, navigate))
     }, [search])
 
     const deleteEmployeeHandler = (employee) => {
@@ -54,7 +60,9 @@ export default () => {
                     text: "This employee has been deleted.",
                     icon: "success"
                 }).then(() => {
-                    dispatch(getEmployees(userPermission != "NONE", search, navigate))
+                    dispatch(getEmployees(true, search, navigate))
+                    //the above row will be replace to the next row at 30.05.2024
+                    // dispatch(getEmployees(userPermission != "NONE", search, navigate))
                 })
             }
         })

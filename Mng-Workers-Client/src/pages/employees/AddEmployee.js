@@ -21,7 +21,7 @@ const schema = yup.object(
         firstName: yup.string().required('must be fill').min(3),
         lastName: yup.string().required('must be fill').min(3),
         birthDate: yup.date().required('must be fill').max(new Date(), 'Birth Date must be on or before the current date'),
-        StartDate: yup.date().required('must be fill').min(yup.ref('birthDate'), "The start date of work must be after the date of birth."),
+        startDate: yup.date().required('must be fill').min(yup.ref('birthDate'), "The start date of work must be after the date of birth."),
         gander: yup.number().required('must be fill').default(1),
         password: yup.string().nullable().transform((value, originalValue) => {
             return originalValue === '' ? null : value;
@@ -29,7 +29,7 @@ const schema = yup.object(
         roles: yup.array().of(yup.object().shape({
             roleId: yup.number(),
             isAdministrative: yup.boolean().default(false),
-            lastChange: yup.date().nullable(),
+            lastChange: yup.date().nullable().default(new Date()),
             enterDate: yup.date()
                 .when('lastChange', (lastChange, schema) => (
                     lastChange && schema.min(lastChange, `Enter Date must be equal to or later than Last Change Date ${lastChange}`)
@@ -49,7 +49,7 @@ export default () => {
         dispatch(getAllRoles())
     }, [dispatch])
 
-    const { register, control, handleSubmit, getValues, setValue, formState: { errors } } = useForm({
+    const { register, control, handleSubmit, getValues, setValue, setError, formState: { errors, isValid } } = useForm({
         resolver: yupResolver(schema),
         values: {
             tz: selectEmployee?.tz,
@@ -82,26 +82,41 @@ export default () => {
         return isExist;
     }
 
-    const submittion = () => {
+    const onSubmit = () => {
         const data = getValues()
-        if (selectEmployee) {
-            dispatch(editEmployee(selectEmployee.id, { ...data, status: selectEmployee?.status, gender: +data.gender }, navigate))
-        } else {
-            dispatch(addEmployee({ ...data, status: true, gender: 1 }, navigate))
+        if (isValid) {
+            if (selectEmployee) {
+                dispatch(editEmployee(selectEmployee.id, { ...data, status: selectEmployee?.status, gender: +data.gender }, navigate))
+            }
+            else {
+                dispatch(addEmployee({ ...data, status: true, gender: 1 }, navigate))
+            }
+            setOpen(false)
+        }
+        else {
+            Object.keys(schema.fields).forEach(field => {
+                if (errors && errors[field]) {
+                    setError(field, {
+                        type: "manual",
+                        message: errors[field]?.message || `Custom error message for ${field} field`
+                    })
+                }
+            })
         }
     }
+
+
 
     const [open, setOpen] = useState(true);
 
     const handleClose = () => {
         setOpen(false);
-        // navigate('/home')
     };
     return <>
         <Dialog open={open} onClose={handleClose} PaperProps={{ style: { width: '80%', margin: 'auto' } }}>
             <DialogTitle>{selectEmployee ? `Edit ${selectEmployee.firstName} details` : "Add Employee"}</DialogTitle>
             <DialogContent>
-                <form onSubmit={handleSubmit(submittion)}>
+                <form onSubmit={handleSubmit(onSubmit)}>
                     <TextField style={{ width: '80%' }} label="Tz-Identity number"
                         margin="dense" {...register("tz")}
                         InputProps={{ startAdornment: (<InputAdornment position="start"><FingerprintIcon /></InputAdornment>), }}
@@ -134,10 +149,14 @@ export default () => {
                     <TextField style={{ width: '80%' }} label="birthDate"
                         margin="dense"{...register("birthDate")} type="date"
                         error={!!errors.birthDate} helperText={errors.birthDate?.message} />
+                    {errors.birthDate && <p className="ui pointing red basic label">{errors.birthDate?.message}</p>}
+
                     <br />
                     <TextField style={{ width: '80%' }} label="startDate"
                         margin="dense"{...register("startDate")} type="date"
                         error={!!errors.startDate} helperText={errors.startDate?.message} />
+                    {errors.startDate && <p className="ui pointing red basic label">{errors.startDate?.message}</p>}
+
                     <br />
                     <div>Roles:<br></br>
                         {roles?.map((item, i) => (
@@ -180,10 +199,12 @@ export default () => {
                         Add Role
                     </Button>
                     <br />
-                    <Button variant="contained" color="primary"
-                        onClick={() => { submittion() }}
-                        className="submitt">Submit</Button>
+                    <button variant="contained" color="primary"
+                        onClick={() => { onSubmit() }}
+                        // type="submit" ---notice--- this is a mystorious bag that until now ,none had resovle it.so you see the onclick prop :(
+                        className="submitt">Submit</button>
                 </form>
+
             </DialogContent>
         </Dialog>
     </>

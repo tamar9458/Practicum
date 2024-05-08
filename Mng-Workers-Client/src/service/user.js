@@ -23,10 +23,10 @@ export const setUser = (data, navigate) => {
                 .catch((error) => {
                     Swal.fire({
                         title: 'ERROR',
-                        text: 'Sorry, you dont have permission to access. Please try again.',
+                        text: `Sorry, you hav'nt a permission to access. Please try again.`,
                         icon: 'error'
                     })
-                    navigate('/home');
+                    navigate('/home')
                 });
         }
         else {
