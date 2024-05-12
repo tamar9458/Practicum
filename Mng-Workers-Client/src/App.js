@@ -16,18 +16,25 @@ export const API_URL = `https://localhost:7282/api`
 export function decode(user, typeDecode) {
   if (user) {
     const decodedToken = jwtDecode(user);
-    return typeDecode == 1 ? decodedToken.Permission : decodedToken.Name
+    return typeDecode == 1 ?decodedToken.Permission: decodedToken.Name
   }
   else if (localStorage.getItem('accessToken') != "null") {
     const decodedToken = jwtDecode(localStorage.getItem('accessToken'));
-    return typeDecode == 1 ? decodedToken.Permission : decodedToken.Name
+    return typeDecode == 1 ? decodedToken.Permission: decodedToken.Name
   }
   return 0
 }
 export const typeDecode = {
   Name: 0,
   Permission: 1
-};
+}
+export function PermissionToNumber(user){
+  const name=decode(user,typeDecode.Name)
+  const permission=decode(user,typeDecode.Permission)
+  if(name==="Testing"&&permission==="NONE")
+    return 3
+  return permission === "NONE"?0 : permission === "WATCHING" ? 1 : permission === "EDITING" ? 2 : 3
+}
 function App() {
   const navigate = useNavigate()
   useEffect(() => {

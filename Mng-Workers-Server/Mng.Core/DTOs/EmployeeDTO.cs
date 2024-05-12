@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Mng.Data.DTOs
 {
-    public enum PermissionLevel {NONE ,WATCHING , EDITING, ALL }
+    public enum PermissionLevel {NONE ,WATCHING , EDITING, TESTING }
 
     public class EmployeeDTO
     {
@@ -23,7 +23,6 @@ namespace Mng.Data.DTOs
             get {
                 int level = Roles.Sum(r=>r.IsAdministrative?1:0);
                 return level == 0 ? PermissionLevel.NONE :
-                    level >=5 ? PermissionLevel.ALL :
                     level >=3 ?PermissionLevel.EDITING :
                     PermissionLevel.WATCHING;
             }

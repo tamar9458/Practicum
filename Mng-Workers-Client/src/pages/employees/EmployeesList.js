@@ -14,9 +14,10 @@ import Swal from 'sweetalert2';
 import React from 'react';
 import { saveAs } from 'file-saver';
 import ExcelJS from 'exceljs';
-import { decode, typeDecode } from "../../App";
+import { decode, typeDecode,PermissionToNumber } from "../../App";
 import AddRole from "../roles/AddRole"
 import '../../App.css'
+
 
 export default () => {
     const { user, employees, roles } = useSelector(state => ({
@@ -24,10 +25,8 @@ export default () => {
         employees: state.employee.employees,
         roles: state.role.roles
     }))
-    const userPermission = (decode(user, typeDecode.Permission))
-    const levelPermission = 3
-    //the above row will be replace to the next row at 30.05.2024
-    // const levelPermission = userPermission === "NONE" ? 0 : userPermission === "WATCHING" ? 1 : userPermission === "EDIT" ? 2 : 3
+    //const userPermission = (decode(user, typeDecode.Permission))
+    const levelPermission = PermissionToNumber(user)
     const [showAddRole, setShowAddRole] = useState(false)
     const [search, setSearch] = useState('')
     const navigate = useNavigate();
